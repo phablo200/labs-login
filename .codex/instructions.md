@@ -29,13 +29,13 @@ src/
 │       ├── api.ts
 │       └── types.ts
 ├── hooks/
-├── lib/
+├── routes/
 ├── pages/
 ├── App.tsx
 └── main.tsx
 ```
 
-Keep feature-specific auth code under `src/features/auth`. Keep reusable primitives under `src/components/ui`. Keep shared API setup, session helpers, i18n setup, config, and utilities under `src/lib`. Use `src/pages` for route-level components.
+Keep feature-specific auth code under `src/features/auth`. Keep reusable primitives under `src/components/ui`. Keep shared API setup, session helpers, i18n setup, config, and utilities under `src/lib`. Keep shared route strings and router setup under `src/routes`. Use `src/pages` for route-level components.
 
 ## Required Libraries and Patterns
 

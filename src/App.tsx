@@ -1,8 +1,8 @@
-import StarterPage from './pages/StarterPage'
 import './App.css'
+import AppRouter from './routes/router'
 
 function App() {
-  return <StarterPage />
+  return <AppRouter />
 }
 
 export default App
