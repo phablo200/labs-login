@@ -1,30 +1,32 @@
+import { useTranslation } from 'react-i18next'
+
 function ProviderButtons() {
+  const { t } = useTranslation()
+
   return (
-    <div className="auth-providers" aria-label="Provider login options">
+    <div className="auth-providers" aria-label={t('providers.label')}>
       <div className="auth-providers__divider">
-        <span>or continue with</span>
+        <span>{t('providers.divider')}</span>
       </div>
       <div className="auth-providers__buttons">
         <button
           className="auth-provider-button"
           disabled
-          title="Google login is unavailable until backend OAuth support exists."
+          title={t('providers.googleUnavailable')}
           type="button"
         >
-          Google
+          {t('providers.google')}
         </button>
         <button
           className="auth-provider-button"
           disabled
-          title="GitHub login is unavailable until backend OAuth support exists."
+          title={t('providers.githubUnavailable')}
           type="button"
         >
-          GitHub
+          {t('providers.github')}
         </button>
       </div>
-      <p className="auth-providers__helper">
-        Provider login is unavailable until backend OAuth support exists.
-      </p>
+      <p className="auth-providers__helper">{t('providers.helper')}</p>
     </div>
   )
 }

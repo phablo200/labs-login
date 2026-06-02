@@ -1,68 +1,132 @@
+import { useMemo } from 'react'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import AuthLayout from '../../features/auth/components/AuthLayout/AuthLayout'
 import PasswordField from '../../features/auth/components/PasswordField/PasswordField'
 import ProviderButtons from '../../features/auth/components/ProviderButtons/ProviderButtons'
+import {
+  createSignUpSchema,
+  type SignUpFormValues,
+} from '../../features/auth/validation'
 import { AppRoute } from '../../routes/routes.enum'
 
+function handleValidSignUp() {
+  return undefined
+}
+
 function SignUpPage() {
+  const { t } = useTranslation()
+  const signUpSchema = useMemo(
+    () => createSignUpSchema(t),
+    [t],
+  )
+  const {
+    formState: { errors },
+    handleSubmit,
+    register,
+  } = useForm<SignUpFormValues>({
+    defaultValues: {
+      confirmPassword: '',
+      email: '',
+      name: '',
+      password: '',
+    },
+    resolver: zodResolver(signUpSchema),
+  })
+
   return (
     <AuthLayout
       labelledBy="sign-up-title"
-      subtitle="Create your account with the details your team recognizes."
-      title="Create account"
+      subtitle={t('auth.signUp.subtitle')}
+      title={t('auth.signUp.title')}
       footer={
         <p>
-          Already have an account? <Link to={AppRoute.SignIn}>Sign in</Link>
+          <Trans
+            i18nKey="auth.signUp.footer"
+            components={{ link: <Link to={AppRoute.SignIn} /> }}
+          />
         </p>
       }
     >
-      <form className="auth-form" onSubmit={(event) => event.preventDefault()}>
+      <form
+        className="auth-form"
+        noValidate
+        onSubmit={handleSubmit(handleValidSignUp)}
+      >
         <div className="auth-form__field">
           <label className="auth-form__label" htmlFor="sign-up-name">
-            Name
+            {t('auth.fields.name')}
           </label>
           <input
+            {...register('name')}
+            aria-describedby={errors.name ? 'sign-up-name-error' : undefined}
+            aria-invalid={Boolean(errors.name)}
             autoComplete="name"
-            className="auth-form__input"
+            className={`auth-form__input${
+              errors.name ? ' auth-form__input--error' : ''
+            }`}
             id="sign-up-name"
             name="name"
-            placeholder="Your full name"
+            placeholder={t('auth.fields.namePlaceholder')}
             type="text"
           />
+          {errors.name?.message ? (
+            <p className="auth-form__error" id="sign-up-name-error">
+              {errors.name.message}
+            </p>
+          ) : null}
         </div>
 
         <div className="auth-form__field">
           <label className="auth-form__label" htmlFor="sign-up-email">
-            Email
+            {t('auth.fields.email')}
           </label>
           <input
+            {...register('email')}
+            aria-describedby={
+              errors.email ? 'sign-up-email-error' : undefined
+            }
+            aria-invalid={Boolean(errors.email)}
             autoComplete="email"
-            className="auth-form__input"
+            className={`auth-form__input${
+              errors.email ? ' auth-form__input--error' : ''
+            }`}
             id="sign-up-email"
             name="email"
-            placeholder="you@example.com"
+            placeholder={t('auth.fields.emailPlaceholder')}
             type="email"
           />
+          {errors.email?.message ? (
+            <p className="auth-form__error" id="sign-up-email-error">
+              {errors.email.message}
+            </p>
+          ) : null}
         </div>
 
         <PasswordField
           autoComplete="new-password"
+          error={errors.password?.message}
           id="sign-up-password"
-          label="Password"
+          label={t('auth.fields.password')}
           name="password"
-          placeholder="Create a password"
+          placeholder={t('auth.fields.newPasswordPlaceholder')}
+          registration={register('password')}
         />
 
         <PasswordField
           autoComplete="new-password"
+          error={errors.confirmPassword?.message}
           id="sign-up-confirm-password"
-          label="Confirm password"
+          label={t('auth.fields.confirmPassword')}
           name="confirmPassword"
-          placeholder="Repeat your password"
+          placeholder={t('auth.fields.confirmPasswordPlaceholder')}
+          registration={register('confirmPassword')}
         />
 
-        <button className="auth-form__submit" disabled type="submit">
-          Create account
+        <button className="auth-form__submit" type="submit">
+          {t('actions.createAccount')}
         </button>
       </form>
 

@@ -22,11 +22,44 @@
   width: min(100%, 420px);
 }
 
-.auth-layout__mobile-brand {
+.auth-layout__topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
   margin-bottom: 32px;
+}
+
+.auth-layout__mobile-brand {
   color: var(--brand-primary);
   font-size: 15px;
   font-weight: 700;
+}
+
+.language-selector {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.language-selector__label {
+  white-space: nowrap;
+}
+
+.language-selector__control {
+  min-width: 108px;
+  height: 36px;
+  padding: 0 30px 0 10px;
+  border: 1px solid var(--border-default);
+  border-radius: 6px;
+  background: var(--surface-input);
+  color: var(--text-primary);
+  font: inherit;
 }
 
 .auth-layout__header {
@@ -66,7 +99,8 @@
 
 .auth-layout a:focus-visible,
 .auth-form__input:focus-visible,
-.auth-form__password-toggle:focus-visible {
+.auth-form__password-toggle:focus-visible,
+.language-selector__control:focus-visible {
   outline: 2px solid var(--brand-primary);
   outline-offset: 3px;
 }
@@ -111,6 +145,39 @@
   border-color: var(--brand-primary);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand-primary) 18%, transparent);
   outline: none;
+}
+
+.auth-form__input--error,
+.auth-form__input[aria-invalid='true'] {
+  border-color: var(--feedback-error);
+}
+
+.auth-form__input--error:focus,
+.auth-form__input[aria-invalid='true']:focus {
+  border-color: var(--feedback-error);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--feedback-error) 18%, transparent);
+}
+
+.auth-form__error {
+  color: var(--feedback-error);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.auth-form__notice,
+.auth-form__notice-stack {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.auth-form__notice-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.auth-form__notice-stack a {
+  justify-self: start;
 }
 
 .auth-form__password-control {
@@ -361,6 +428,10 @@
   .auth-layout__mobile-brand {
     display: none;
   }
+
+  .auth-layout__topbar {
+    justify-content: flex-end;
+  }
 }
 
 @media (max-width: 640px) {
@@ -377,6 +448,11 @@
   .auth-form__row {
     display: grid;
     gap: 10px;
+  }
+
+  .language-selector {
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
 
   .route-page {

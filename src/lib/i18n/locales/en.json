@@ -1,0 +1,99 @@
+{
+  "actions": {
+    "backToSignIn": "Back to sign in",
+    "createAccount": "Create account",
+    "hideField": "Hide {{field}}",
+    "hidePassword": "Hide",
+    "requestRecoveryLink": "Request recovery link",
+    "resetPassword": "Reset password",
+    "sendRecoveryLink": "Send recovery link",
+    "showField": "Show {{field}}",
+    "showPassword": "Show",
+    "signIn": "Sign in",
+    "signUp": "Sign up"
+  },
+  "auth": {
+    "fields": {
+      "confirmPassword": "Confirm password",
+      "confirmPasswordPlaceholder": "Repeat your password",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "name": "Name",
+      "namePlaceholder": "Your full name",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "newPasswordPlaceholder": "Create a password"
+    },
+    "passwordRecovery": {
+      "footer": "Remembered your password? <link>Sign in</link>",
+      "subtitle": "Enter your email and we will send recovery instructions when the account can receive them.",
+      "title": "Recover password"
+    },
+    "resetPassword": {
+      "detected": "Recovery token detected.",
+      "missing": "No recovery token was provided. Open this page from a password recovery email to continue.",
+      "navLabel": "Reset password related pages",
+      "subtitle": "Create a new password for your account.",
+      "title": "Reset password"
+    },
+    "signIn": {
+      "createAccount": "Create an account",
+      "footer": "New to MeLogin? <link>Create an account</link>",
+      "footerPrefix": "New to MeLogin?",
+      "forgotPassword": "Forgot password?",
+      "secureSession": "Secure session",
+      "subtitle": "Enter your credentials to continue to your workspace.",
+      "title": "Sign in"
+    },
+    "signUp": {
+      "footer": "Already have an account? <link>Sign in</link>",
+      "subtitle": "Create your account with the details your team recognizes.",
+      "title": "Create account"
+    }
+  },
+  "brand": {
+    "ariaLabel": "MeLogin",
+    "copy": "A focused authentication experience for teams that need clear, reliable access.",
+    "name": "MeLogin",
+    "title": "Access your workspace securely."
+  },
+  "errors": {
+    "auth": "We could not complete that authentication request.",
+    "network": "We could not reach the service. Check your connection and try again.",
+    "serviceUnavailable": "The authentication service is unavailable. Try again soon.",
+    "unexpected": "Something went wrong. Try again."
+  },
+  "language": {
+    "english": "English",
+    "label": "Language",
+    "portuguese": "Portuguese"
+  },
+  "providers": {
+    "divider": "or continue with",
+    "github": "Continue with GitHub",
+    "githubUnavailable": "GitHub login is unavailable until backend OAuth support exists.",
+    "google": "Continue with Google",
+    "googleUnavailable": "Google login is unavailable until backend OAuth support exists.",
+    "helper": "Provider login is unavailable until backend OAuth support exists.",
+    "label": "Provider login options"
+  },
+  "routes": {
+    "home": {
+      "copy": "Minimal home placeholder. Protected session behavior is deferred until the session abstraction is implemented.",
+      "navLabel": "Home related pages",
+      "title": "Home"
+    },
+    "notFound": {
+      "copy": "The page you requested does not exist in this app.",
+      "navLabel": "Not found related pages",
+      "signIn": "Go to sign in",
+      "title": "Page not found"
+    }
+  },
+  "validation": {
+    "email": "Enter a valid email address.",
+    "passwordMismatch": "Passwords must match.",
+    "passwordMinLength": "Password must be at least {{count}} characters.",
+    "required": "This field is required."
+  }
+}

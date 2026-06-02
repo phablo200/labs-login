@@ -1,4 +1,6 @@
+import { useTranslation } from 'react-i18next'
 import heroImage from '../../../../assets/hero.png'
+import LanguageSelector from '../LanguageSelector/LanguageSelector'
 import type { AuthLayoutProps } from './AuthLayout.types'
 
 function AuthLayout({
@@ -8,18 +10,15 @@ function AuthLayout({
   subtitle,
   title,
 }: AuthLayoutProps) {
+  const { t } = useTranslation()
+
   return (
     <main className="auth-layout" aria-labelledby={labelledBy}>
-      <section className="auth-layout__brand" aria-label="MeLogin">
+      <section className="auth-layout__brand" aria-label={t('brand.ariaLabel')}>
         <div className="auth-layout__brand-content">
-          <p className="auth-layout__eyebrow">MeLogin</p>
-          <h2 className="auth-layout__brand-title">
-            Access your workspace securely.
-          </h2>
-          <p className="auth-layout__brand-copy">
-            A focused authentication experience for teams that need clear,
-            reliable access.
-          </p>
+          <p className="auth-layout__eyebrow">{t('brand.name')}</p>
+          <h2 className="auth-layout__brand-title">{t('brand.title')}</h2>
+          <p className="auth-layout__brand-copy">{t('brand.copy')}</p>
         </div>
         <div className="auth-layout__hero-wrap" aria-hidden="true">
           <img
@@ -33,8 +32,11 @@ function AuthLayout({
 
       <section className="auth-layout__panel">
         <div className="auth-layout__form-shell">
-          <div className="auth-layout__mobile-brand" aria-hidden="true">
-            MeLogin
+          <div className="auth-layout__topbar">
+            <div className="auth-layout__mobile-brand" aria-hidden="true">
+              {t('brand.name')}
+            </div>
+            <LanguageSelector />
           </div>
           <div className="auth-layout__header">
             <h1 id={labelledBy}>{title}</h1>

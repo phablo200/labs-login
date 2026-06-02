@@ -13,6 +13,10 @@
   --surface-input: #ffffff;
   --border-default: #dcdce3;
   --border-strong: #b9b9c3;
+  --feedback-error: #c93636;
+  --feedback-success: #16a66a;
+  --feedback-warning: #b7791f;
+  --feedback-info: #3563e9;
 
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
@@ -42,6 +46,10 @@
     --surface-input: #20202a;
     --border-default: #343442;
     --border-strong: #555568;
+    --feedback-error: #ff8a8a;
+    --feedback-success: #5bd697;
+    --feedback-warning: #e0b15a;
+    --feedback-info: #8fa8ff;
 
     color-scheme: dark;
   }

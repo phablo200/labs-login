@@ -1,0 +1,99 @@
+{
+  "actions": {
+    "backToSignIn": "Voltar para o login",
+    "createAccount": "Criar conta",
+    "hideField": "Ocultar {{field}}",
+    "hidePassword": "Ocultar",
+    "requestRecoveryLink": "Solicitar link de recuperação",
+    "resetPassword": "Redefinir senha",
+    "sendRecoveryLink": "Enviar link de recuperação",
+    "showField": "Mostrar {{field}}",
+    "showPassword": "Mostrar",
+    "signIn": "Entrar",
+    "signUp": "Criar conta"
+  },
+  "auth": {
+    "fields": {
+      "confirmPassword": "Confirmar senha",
+      "confirmPasswordPlaceholder": "Repita sua senha",
+      "email": "Email",
+      "emailPlaceholder": "voce@exemplo.com",
+      "name": "Nome",
+      "namePlaceholder": "Seu nome completo",
+      "password": "Senha",
+      "passwordPlaceholder": "Digite sua senha",
+      "newPasswordPlaceholder": "Crie uma senha"
+    },
+    "passwordRecovery": {
+      "footer": "Lembrou sua senha? <link>Entrar</link>",
+      "subtitle": "Informe seu email e enviaremos instruções de recuperação quando a conta puder recebê-las.",
+      "title": "Recuperar senha"
+    },
+    "resetPassword": {
+      "detected": "Token de recuperação detectado.",
+      "missing": "Nenhum token de recuperação foi informado. Abra esta página pelo email de recuperação de senha para continuar.",
+      "navLabel": "Páginas relacionadas à redefinição de senha",
+      "subtitle": "Crie uma nova senha para sua conta.",
+      "title": "Redefinir senha"
+    },
+    "signIn": {
+      "createAccount": "Crie uma conta",
+      "footer": "Novo no MeLogin? <link>Crie uma conta</link>",
+      "footerPrefix": "Novo no MeLogin?",
+      "forgotPassword": "Esqueceu a senha?",
+      "secureSession": "Sessão segura",
+      "subtitle": "Informe suas credenciais para continuar para seu espaço de trabalho.",
+      "title": "Entrar"
+    },
+    "signUp": {
+      "footer": "Já tem uma conta? <link>Entrar</link>",
+      "subtitle": "Crie sua conta com os dados que sua equipe reconhece.",
+      "title": "Criar conta"
+    }
+  },
+  "brand": {
+    "ariaLabel": "MeLogin",
+    "copy": "Uma experiência de autenticação focada para equipes que precisam de acesso claro e confiável.",
+    "name": "MeLogin",
+    "title": "Acesse seu espaço com segurança."
+  },
+  "errors": {
+    "auth": "Não foi possível concluir essa solicitação de autenticação.",
+    "network": "Não foi possível conectar ao serviço. Verifique sua conexão e tente novamente.",
+    "serviceUnavailable": "O serviço de autenticação está indisponível. Tente novamente em breve.",
+    "unexpected": "Algo deu errado. Tente novamente."
+  },
+  "language": {
+    "english": "Inglês",
+    "label": "Idioma",
+    "portuguese": "Português"
+  },
+  "providers": {
+    "divider": "ou continue com",
+    "github": "Continuar com GitHub",
+    "githubUnavailable": "Login com GitHub indisponível até existir suporte OAuth no backend.",
+    "google": "Continuar com Google",
+    "googleUnavailable": "Login com Google indisponível até existir suporte OAuth no backend.",
+    "helper": "Login por provedor indisponível até existir suporte OAuth no backend.",
+    "label": "Opções de login por provedor"
+  },
+  "routes": {
+    "home": {
+      "copy": "Placeholder mínimo da home. O comportamento de sessão protegida fica adiado até a abstração de sessão ser implementada.",
+      "navLabel": "Páginas relacionadas à home",
+      "title": "Home"
+    },
+    "notFound": {
+      "copy": "A página solicitada não existe neste app.",
+      "navLabel": "Páginas relacionadas à página não encontrada",
+      "signIn": "Ir para entrar",
+      "title": "Página não encontrada"
+    }
+  },
+  "validation": {
+    "email": "Informe um email válido.",
+    "passwordMismatch": "As senhas devem ser iguais.",
+    "passwordMinLength": "A senha deve ter pelo menos {{count}} caracteres.",
+    "required": "Este campo é obrigatório."
+  }
+}
