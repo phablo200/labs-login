@@ -26,6 +26,7 @@
     },
     "passwordRecovery": {
       "footer": "Remembered your password? <link>Sign in</link>",
+      "footerPrefix": "Remembered your password?",
       "subtitle": "Enter your email and we will send recovery instructions when the account can receive them.",
       "title": "Recover password"
     },
@@ -47,6 +48,7 @@
     },
     "signUp": {
       "footer": "Already have an account? <link>Sign in</link>",
+      "footerPrefix": "Already have an account?",
       "subtitle": "Create your account with the details your team recognizes.",
       "title": "Create account"
     }

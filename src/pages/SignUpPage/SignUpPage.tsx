@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import AuthLayout from '../../features/auth/components/AuthLayout/AuthLayout'
 import PasswordField from '../../features/auth/components/PasswordField/PasswordField'
@@ -43,10 +43,8 @@ function SignUpPage() {
       title={t('auth.signUp.title')}
       footer={
         <p>
-          <Trans
-            i18nKey="auth.signUp.footer"
-            components={{ link: <Link to={AppRoute.SignIn} /> }}
-          />
+          {t('auth.signUp.footerPrefix')}{' '}
+          <Link to={AppRoute.SignIn}>{t('actions.signIn')}</Link>
         </p>
       }
     >

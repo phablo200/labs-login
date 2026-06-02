@@ -26,6 +26,7 @@
     },
     "passwordRecovery": {
       "footer": "Lembrou sua senha? <link>Entrar</link>",
+      "footerPrefix": "Lembrou sua senha?",
       "subtitle": "Informe seu email e enviaremos instruções de recuperação quando a conta puder recebê-las.",
       "title": "Recuperar senha"
     },
@@ -47,6 +48,7 @@
     },
     "signUp": {
       "footer": "Já tem uma conta? <link>Entrar</link>",
+      "footerPrefix": "Já tem uma conta?",
       "subtitle": "Crie sua conta com os dados que sua equipe reconhece.",
       "title": "Criar conta"
     }
