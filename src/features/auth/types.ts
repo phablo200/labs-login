@@ -28,7 +28,7 @@ export type SignUpRequest = {
   password: string
 }
 
-export type SignUpResponse = AuthUser
+export type SignUpResponse = SignInResponse
 
 export type ForgotPasswordRequest = {
   email: string
@@ -54,4 +54,12 @@ export type MessageResponse = {
 
 export type AuthErrorResponse = {
   error: string
+}
+
+export type ValidateTokenResponse = {
+  valid: true
+}
+
+export type RefreshTokenResponse = {
+  refreshedToken: string
 }

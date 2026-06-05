@@ -28,6 +28,7 @@
       "footer": "Remembered your password? <link>Sign in</link>",
       "footerPrefix": "Remembered your password?",
       "subtitle": "Enter your email and we will send recovery instructions when the account can receive them.",
+      "success": "If the account can receive recovery instructions, we sent them.",
       "title": "Recover password"
     },
     "resetPassword": {
@@ -35,6 +36,7 @@
       "missing": "No recovery token was provided. Open this page from a password recovery email to continue.",
       "navLabel": "Reset password related pages",
       "subtitle": "Create a new password for your account.",
+      "success": "Your password was reset. Sign in with the new password.",
       "title": "Reset password"
     },
     "signIn": {
@@ -81,9 +83,10 @@
   },
   "routes": {
     "home": {
-      "copy": "Minimal home placeholder. Protected session behavior is deferred until the session abstraction is implemented.",
+      "copy": "You are signed in. This protected page is ready for the authenticated workspace experience.",
       "navLabel": "Home related pages",
-      "title": "Home"
+      "title": "Home",
+      "validatingSession": "Checking your session..."
     },
     "notFound": {
       "copy": "The page you requested does not exist in this app.",

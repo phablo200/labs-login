@@ -3,16 +3,15 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import { toast } from 'sonner'
+import { requestPasswordRecovery } from '../../features/auth/api'
 import AuthLayout from '../../features/auth/components/AuthLayout/AuthLayout'
+import { showAuthErrorToast } from '../../features/auth/toast'
 import {
   createPasswordRecoverySchema,
   type PasswordRecoveryFormValues,
 } from '../../features/auth/validation'
 import { AppRoute } from '../../routes/routes.enum'
-
-function handleValidPasswordRecovery() {
-  return undefined
-}
 
 function PasswordRecoveryPage() {
   const { t } = useTranslation()
@@ -21,7 +20,7 @@ function PasswordRecoveryPage() {
     [t],
   )
   const {
-    formState: { errors },
+    formState: { errors, isSubmitting },
     handleSubmit,
     register,
   } = useForm<PasswordRecoveryFormValues>({
@@ -30,6 +29,20 @@ function PasswordRecoveryPage() {
     },
     resolver: zodResolver(passwordRecoverySchema),
   })
+
+  async function handleValidPasswordRecovery(
+    values: PasswordRecoveryFormValues,
+  ) {
+    try {
+      const response = await requestPasswordRecovery({
+        email: values.email,
+      })
+
+      toast.success(response.message || t('auth.passwordRecovery.success'))
+    } catch (error) {
+      showAuthErrorToast(error, t)
+    }
+  }
 
   return (
     <AuthLayout
@@ -74,7 +87,11 @@ function PasswordRecoveryPage() {
           ) : null}
         </div>
 
-        <button className="auth-form__submit" type="submit">
+        <button
+          className="auth-form__submit"
+          disabled={isSubmitting}
+          type="submit"
+        >
           {t('actions.sendRecoveryLink')}
         </button>
       </form>

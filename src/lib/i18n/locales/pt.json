@@ -28,6 +28,7 @@
       "footer": "Lembrou sua senha? <link>Entrar</link>",
       "footerPrefix": "Lembrou sua senha?",
       "subtitle": "Informe seu email e enviaremos instruções de recuperação quando a conta puder recebê-las.",
+      "success": "Se a conta puder receber instruções de recuperação, nós as enviamos.",
       "title": "Recuperar senha"
     },
     "resetPassword": {
@@ -35,6 +36,7 @@
       "missing": "Nenhum token de recuperação foi informado. Abra esta página pelo email de recuperação de senha para continuar.",
       "navLabel": "Páginas relacionadas à redefinição de senha",
       "subtitle": "Crie uma nova senha para sua conta.",
+      "success": "Sua senha foi redefinida. Entre com a nova senha.",
       "title": "Redefinir senha"
     },
     "signIn": {
@@ -81,9 +83,10 @@
   },
   "routes": {
     "home": {
-      "copy": "Placeholder mínimo da home. O comportamento de sessão protegida fica adiado até a abstração de sessão ser implementada.",
+      "copy": "Você está autenticado. Esta página protegida está pronta para a experiência do espaço de trabalho.",
       "navLabel": "Páginas relacionadas à home",
-      "title": "Home"
+      "title": "Home",
+      "validatingSession": "Verificando sua sessão..."
     },
     "notFound": {
       "copy": "A página solicitada não existe neste app.",

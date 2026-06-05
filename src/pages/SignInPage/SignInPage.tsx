@@ -2,28 +2,28 @@ import { useMemo } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { signIn } from '../../features/auth/api'
 import AuthLayout from '../../features/auth/components/AuthLayout/AuthLayout'
 import PasswordField from '../../features/auth/components/PasswordField/PasswordField'
 import ProviderButtons from '../../features/auth/components/ProviderButtons/ProviderButtons'
+import { showAuthErrorToast } from '../../features/auth/toast'
 import {
   createSignInSchema,
   type SignInFormValues,
 } from '../../features/auth/validation'
+import { saveSessionToken } from '../../lib/session'
 import { AppRoute } from '../../routes/routes.enum'
-
-function handleValidSignIn() {
-  return undefined
-}
 
 function SignInPage() {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const signInSchema = useMemo(
     () => createSignInSchema(t),
     [t],
   )
   const {
-    formState: { errors },
+    formState: { errors, isSubmitting },
     handleSubmit,
     register,
   } = useForm<SignInFormValues>({
@@ -33,6 +33,21 @@ function SignInPage() {
     },
     resolver: zodResolver(signInSchema),
   })
+
+  async function handleValidSignIn(values: SignInFormValues) {
+    try {
+      const response = await signIn({
+        email: values.email,
+        password: values.password,
+      })
+
+      saveSessionToken(response.token)
+      navigate(AppRoute.Home)
+    } catch (error) {
+      console.log(error);
+      showAuthErrorToast(error, t)
+    }
+  }
 
   return (
     <AuthLayout
@@ -96,7 +111,11 @@ function SignInPage() {
           </Link>
         </div>
 
-        <button className="auth-form__submit" type="submit">
+        <button
+          className="auth-form__submit"
+          disabled={isSubmitting}
+          type="submit"
+        >
           {t('actions.signIn')}
         </button>
       </form>

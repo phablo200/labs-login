@@ -5,6 +5,7 @@ import PasswordRecoveryPage from '../pages/PasswordRecoveryPage/PasswordRecovery
 import ResetPasswordPage from '../pages/ResetPasswordPage/ResetPasswordPage'
 import SignInPage from '../pages/SignInPage/SignInPage'
 import SignUpPage from '../pages/SignUpPage/SignUpPage'
+import ProtectedRoute from './ProtectedRoute'
 import { AppRoute } from './routes.enum'
 
 function AppRouter() {
@@ -21,7 +22,14 @@ function AppRouter() {
         element={<PasswordRecoveryPage />}
       />
       <Route path={AppRoute.ResetPassword} element={<ResetPasswordPage />} />
-      <Route path={AppRoute.Home} element={<HomePage />} />
+      <Route
+        path={AppRoute.Home}
+        element={
+          <ProtectedRoute>
+            <HomePage />
+          </ProtectedRoute>
+        }
+      />
       <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
     </Routes>
   )

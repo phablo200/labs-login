@@ -57,7 +57,7 @@ The frontend shall consume these backend endpoints:
 | Feature | Method | Endpoint | Request Body | Success Response |
 | --- | --- | --- | --- | --- |
 | Sign in | `POST` | `/auth/signin` | `{ email, password }` | `{ token, user }` |
-| Sign up | `POST` | `/auth/signup` | `{ name, email, password }` | user object |
+| Sign up | `POST` | `/auth/signup` | `{ name, email, password }` | `{ token, user }` |
 | Forgot password | `POST` | `/auth/forgot-password` | `{ email }` | `{ message }` |
 | Reset password | `PATCH` | `/auth/reset-password` | `{ token, new_password }` | `{ message }` |
 | Request OTP login | `POST` | `/auth/request-otp-login` | `{ email }` | `{ message }` |
@@ -82,7 +82,7 @@ Provider login buttons for Google and GitHub shall be displayed. The current bac
 - The system shall show fields for name, email, password, and confirm password.
 - The system shall validate required fields, email format, minimum password length, and password confirmation match.
 - The confirm password field shall not be sent to the backend.
-- On successful sign-up, the system shall redirect to `/home` if the backend returns an authenticated session or shall route the user to sign in if no token is returned.
+- On successful sign-up, the system shall store the returned token in a cookie-backed session and redirect to `/home`.
 - On a 4xx response, the system shall show a toast using the backend `error` value, including duplicate email errors.
 
 ### 5.3 Password Recovery
@@ -153,5 +153,5 @@ Provider login buttons for Google and GitHub shall be displayed. The current bac
 
 - The backend currently returns JWT tokens, while the desired frontend storage is cookie-based. Final implementation must decide whether the frontend sets a client-readable cookie or the backend adds HTTP-only session cookie support.
 - Google and GitHub OAuth routes are not currently present in the backend; provider login cannot be fully implemented until those routes are defined.
-- The backend sign-up endpoint returns a user object, not a token. The product decision is whether sign-up should automatically authenticate or require sign-in after registration.
+- The backend sign-up endpoint must return `{ token, user }` and must not expose password hashes in the user payload.
 - Backend password validation for auth routes currently checks presence only. The frontend shall enforce stronger client-side validation, but backend parity is recommended.

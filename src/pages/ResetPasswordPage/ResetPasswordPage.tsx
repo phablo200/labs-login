@@ -2,21 +2,21 @@ import { useMemo } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
+import { toast } from 'sonner'
+import { resetPassword } from '../../features/auth/api'
 import AuthLayout from '../../features/auth/components/AuthLayout/AuthLayout'
 import PasswordField from '../../features/auth/components/PasswordField/PasswordField'
+import { showAuthErrorToast } from '../../features/auth/toast'
 import {
   createResetPasswordSchema,
   type ResetPasswordFormValues,
 } from '../../features/auth/validation'
 import { AppRoute } from '../../routes/routes.enum'
 
-function handleValidResetPassword() {
-  return undefined
-}
-
 function ResetPasswordPage() {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const [searchParams] = useSearchParams()
   const token = searchParams.get('token') ?? ''
   const resetPasswordSchema = useMemo(
@@ -24,7 +24,7 @@ function ResetPasswordPage() {
     [t],
   )
   const {
-    formState: { errors },
+    formState: { errors, isSubmitting },
     handleSubmit,
     register,
   } = useForm<ResetPasswordFormValues>({
@@ -35,6 +35,24 @@ function ResetPasswordPage() {
     },
     resolver: zodResolver(resetPasswordSchema),
   })
+
+  async function handleValidResetPassword(values: ResetPasswordFormValues) {
+    if (!token) {
+      return
+    }
+
+    try {
+      const response = await resetPassword({
+        new_password: values.newPassword,
+        token: values.token,
+      })
+
+      toast.success(response.message || t('auth.resetPassword.success'))
+      navigate(AppRoute.SignIn)
+    } catch (error) {
+      showAuthErrorToast(error, t)
+    }
+  }
 
   return (
     <AuthLayout
@@ -76,7 +94,11 @@ function ResetPasswordPage() {
             registration={register('confirmPassword')}
           />
 
-          <button className="auth-form__submit" type="submit">
+          <button
+            className="auth-form__submit"
+            disabled={isSubmitting}
+            type="submit"
+          >
             {t('actions.resetPassword')}
           </button>
         </form>
