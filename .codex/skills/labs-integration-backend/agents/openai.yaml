@@ -1,0 +1,4 @@
+interface:
+  display_name: "Labs Backend Integration"
+  short_description: "Guide frontend backend integration defaults"
+  default_prompt: "Use $labs-integration-backend to implement frontend behavior while integrating with the backend."
