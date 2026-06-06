@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import GithubIcon from '../../../../components/ui/Icons/GithubIcon'
 import GoogleIcon from '../../../../components/ui/Icons/GoogleIcon'
+import LoadingIcon from '../../../../components/ui/Icons/LoadingIcon'
 import { AppRoute } from '../../../../routes/routes.enum'
 import {
   authorizeOAuthProvider,
@@ -75,6 +76,10 @@ function ProviderButtons() {
   }
 
   function getProviderTitle(provider: OAuthProvider): string {
+    if (status === 'loading') {
+      return t('providers.loading')
+    }
+
     if (status === 'unavailable') {
       return t('providers.serviceUnavailable')
     }
@@ -94,6 +99,10 @@ function ProviderButtons() {
     )
   }
 
+  function isProviderBusy(provider: OAuthProvider): boolean {
+    return status === 'loading' || pendingProvider === provider
+  }
+
   return (
     <div className="auth-providers" aria-label={t('providers.label')}>
       <div className="auth-providers__divider">
@@ -102,13 +111,18 @@ function ProviderButtons() {
       <div className="auth-providers__buttons">
         <button
           aria-label={t('providers.google')}
+          aria-busy={isProviderBusy('google')}
           className="auth-provider-button"
           disabled={isProviderDisabled('google')}
           onClick={() => void handleProviderClick('google')}
           title={getProviderTitle('google')}
           type="button"
         >
-          <GoogleIcon className="auth-provider-button__icon" />
+          {isProviderBusy('google') ? (
+            <LoadingIcon className="auth-provider-button__icon" />
+          ) : (
+            <GoogleIcon className="auth-provider-button__icon" />
+          )}
           <span>
             {pendingProvider === 'google'
               ? t('providers.redirecting')
@@ -117,13 +131,18 @@ function ProviderButtons() {
         </button>
         <button
           aria-label={t('providers.github')}
+          aria-busy={isProviderBusy('github')}
           className="auth-provider-button"
           disabled={isProviderDisabled('github')}
           onClick={() => void handleProviderClick('github')}
           title={getProviderTitle('github')}
           type="button"
         >
-          <GithubIcon className="auth-provider-button__icon auth-provider-button__icon--github" />
+          {isProviderBusy('github') ? (
+            <LoadingIcon className="auth-provider-button__icon" />
+          ) : (
+            <GithubIcon className="auth-provider-button__icon auth-provider-button__icon--github" />
+          )}
           <span>
             {pendingProvider === 'github'
               ? t('providers.redirecting')

@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { toast } from 'sonner'
+import LoadingIcon from '../../components/ui/Icons/LoadingIcon'
 import { resetPassword } from '../../features/auth/api'
 import AuthLayout from '../../features/auth/components/AuthLayout/AuthLayout'
 import PasswordField from '../../features/auth/components/PasswordField/PasswordField'
@@ -95,11 +96,15 @@ function ResetPasswordPage() {
           />
 
           <button
+            aria-busy={isSubmitting}
             className="auth-form__submit"
             disabled={isSubmitting}
             type="submit"
           >
-            {t('actions.resetPassword')}
+            {isSubmitting ? (
+              <LoadingIcon className="auth-form__submit-icon" />
+            ) : null}
+            <span>{t('actions.resetPassword')}</span>
           </button>
         </form>
       ) : (

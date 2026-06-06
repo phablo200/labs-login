@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate } from 'react-router-dom'
 import EmailIcon from '../../components/ui/Icons/EmailIcon'
+import LoadingIcon from '../../components/ui/Icons/LoadingIcon'
 import { signUp } from '../../features/auth/api'
 import AuthLayout from '../../features/auth/components/AuthLayout/AuthLayout'
 import PasswordField from '../../features/auth/components/PasswordField/PasswordField'
@@ -143,11 +144,15 @@ function SignUpPage() {
         />
 
         <button
+          aria-busy={isSubmitting}
           className="auth-form__submit"
           disabled={isSubmitting}
           type="submit"
         >
-          {t('actions.createAccount')}
+          {isSubmitting ? (
+            <LoadingIcon className="auth-form__submit-icon" />
+          ) : null}
+          <span>{t('actions.createAccount')}</span>
         </button>
       </form>
 

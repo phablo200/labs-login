@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { toast } from 'sonner'
 import EmailIcon from '../../components/ui/Icons/EmailIcon'
+import LoadingIcon from '../../components/ui/Icons/LoadingIcon'
 import { requestPasswordRecovery } from '../../features/auth/api'
 import AuthLayout from '../../features/auth/components/AuthLayout/AuthLayout'
 import { showAuthErrorToast } from '../../features/auth/toast'
@@ -92,11 +93,15 @@ function PasswordRecoveryPage() {
         </div>
 
         <button
+          aria-busy={isSubmitting}
           className="auth-form__submit"
           disabled={isSubmitting}
           type="submit"
         >
-          {t('actions.sendRecoveryLink')}
+          {isSubmitting ? (
+            <LoadingIcon className="auth-form__submit-icon" />
+          ) : null}
+          <span>{t('actions.sendRecoveryLink')}</span>
         </button>
       </form>
     </AuthLayout>

@@ -353,6 +353,7 @@
   min-height: 48px;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   padding: 0 18px;
   border: 0;
   border-radius: 6px;
@@ -362,6 +363,12 @@
   font: inherit;
   font-size: 15px;
   font-weight: 700;
+}
+
+.auth-form__submit-icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
 }
 
 .auth-form__submit:disabled {
