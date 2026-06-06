@@ -75,11 +75,32 @@
   "providers": {
     "divider": "or continue with",
     "github": "Continue with GitHub",
-    "githubUnavailable": "GitHub login is unavailable until backend OAuth support exists.",
+    "githubUnavailable": "GitHub login is not available right now.",
     "google": "Continue with Google",
-    "googleUnavailable": "Google login is unavailable until backend OAuth support exists.",
-    "helper": "Provider login is unavailable until backend OAuth support exists.",
-    "label": "Provider login options"
+    "googleUnavailable": "Google login is not available right now.",
+    "helper": "Provider login is enabled only for backend-configured providers.",
+    "label": "Provider login options",
+    "loading": "Checking provider availability...",
+    "oauth": {
+      "callbackSubtitle": "We are completing the provider sign-in handoff.",
+      "callbackTitle": "Provider sign-in",
+      "errors": {
+        "accountConflict": "This email already uses password sign-in. Sign in with email and password until account linking is available.",
+        "callback": "We could not complete provider sign-in. Try again.",
+        "codeExchangeFailed": "The provider sign-in code could not be exchanged. Try again.",
+        "emailUnverified": "The provider email must be verified before it can be used to sign in.",
+        "exchangeExpired": "The provider sign-in code expired. Start again from sign in.",
+        "exchangeInvalid": "The provider sign-in code is invalid. Start again from sign in.",
+        "provider": "The provider could not complete sign-in. Try again.",
+        "providerNotSupported": "That provider is not available for this application.",
+        "stateExpired": "The provider sign-in request expired. Start again from sign in.",
+        "stateInvalid": "The provider sign-in request is invalid. Start again from sign in."
+      },
+      "processing": "Completing provider sign-in...",
+      "success": "Provider sign-in completed. Continue from sign in."
+    },
+    "redirecting": "Redirecting...",
+    "serviceUnavailable": "Provider login is unavailable because the authentication service could not report provider status."
   },
   "routes": {
     "home": {

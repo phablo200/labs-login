@@ -75,11 +75,32 @@
   "providers": {
     "divider": "ou continue com",
     "github": "Continuar com GitHub",
-    "githubUnavailable": "Login com GitHub indisponível até existir suporte OAuth no backend.",
+    "githubUnavailable": "Login com GitHub indisponível no momento.",
     "google": "Continuar com Google",
-    "googleUnavailable": "Login com Google indisponível até existir suporte OAuth no backend.",
-    "helper": "Login por provedor indisponível até existir suporte OAuth no backend.",
-    "label": "Opções de login por provedor"
+    "googleUnavailable": "Login com Google indisponível no momento.",
+    "helper": "Login por provedor só fica ativo para provedores configurados no backend.",
+    "label": "Opções de login por provedor",
+    "loading": "Verificando provedores disponíveis...",
+    "oauth": {
+      "callbackSubtitle": "Estamos concluindo o retorno do login por provedor.",
+      "callbackTitle": "Login por provedor",
+      "errors": {
+        "accountConflict": "Este email já usa login com senha. Entre com email e senha até a vinculação de contas estar disponível.",
+        "callback": "Não foi possível concluir o login por provedor. Tente novamente.",
+        "codeExchangeFailed": "Não foi possível trocar o código de login do provedor. Tente novamente.",
+        "emailUnverified": "O email do provedor precisa estar verificado para ser usado no login.",
+        "exchangeExpired": "O código de login do provedor expirou. Comece novamente pelo login.",
+        "exchangeInvalid": "O código de login do provedor é inválido. Comece novamente pelo login.",
+        "provider": "O provedor não concluiu o login. Tente novamente.",
+        "providerNotSupported": "Esse provedor não está disponível para esta aplicação.",
+        "stateExpired": "A solicitação de login por provedor expirou. Comece novamente pelo login.",
+        "stateInvalid": "A solicitação de login por provedor é inválida. Comece novamente pelo login."
+      },
+      "processing": "Concluindo login por provedor...",
+      "success": "Login por provedor concluído. Continue pelo login."
+    },
+    "redirecting": "Redirecionando...",
+    "serviceUnavailable": "Login por provedor indisponível porque o serviço de autenticação não informou o status dos provedores."
   },
   "routes": {
     "home": {

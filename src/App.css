@@ -100,6 +100,7 @@
 .auth-layout a:focus-visible,
 .auth-form__input:focus-visible,
 .auth-form__password-toggle:focus-visible,
+.auth-provider-button:focus-visible,
 .language-selector__control:focus-visible {
   outline: 2px solid var(--brand-primary);
   outline-offset: 3px;
@@ -286,14 +287,25 @@
   border-radius: 6px;
   background: var(--surface-input);
   color: var(--text-secondary);
-  cursor: not-allowed;
+  cursor: pointer;
   font: inherit;
   font-size: 15px;
   font-weight: 700;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .auth-provider-button:disabled {
+  cursor: not-allowed;
   opacity: 0.72;
+}
+
+.auth-provider-button:not(:disabled):hover {
+  border-color: var(--brand-primary);
+  background: var(--brand-surface);
+  color: var(--brand-primary);
 }
 
 .auth-providers__helper {
@@ -301,6 +313,10 @@
   font-size: 13px;
   line-height: 1.4;
   text-align: center;
+}
+
+.auth-providers__helper--error {
+  color: var(--feedback-error);
 }
 
 .route-page {

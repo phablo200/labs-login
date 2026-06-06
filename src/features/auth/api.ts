@@ -2,6 +2,11 @@ import { requestJson } from '../../lib/api'
 import type {
   ForgotPasswordRequest,
   MessageResponse,
+  OAuthAuthorizeRequest,
+  OAuthAuthorizeResponse,
+  OAuthExchangeRequest,
+  OAuthProvider,
+  OAuthProvidersResponse,
   RefreshTokenResponse,
   RequestOtpLoginRequest,
   ResetPasswordRequest,
@@ -81,5 +86,33 @@ export function refreshToken(token: string): Promise<RefreshTokenResponse> {
     bearerToken: token,
     endpoint: '/auth/refresh-token',
     method: 'GET',
+  })
+}
+
+export function getOAuthProviders(): Promise<OAuthProvidersResponse> {
+  return requestJson<OAuthProvidersResponse>({
+    endpoint: '/auth/oauth/providers',
+    method: 'GET',
+  })
+}
+
+export function authorizeOAuthProvider(
+  provider: OAuthProvider,
+  request: OAuthAuthorizeRequest,
+): Promise<OAuthAuthorizeResponse> {
+  return requestJson<OAuthAuthorizeResponse, OAuthAuthorizeRequest>({
+    body: request,
+    endpoint: `/auth/oauth/${provider}/authorize`,
+    method: 'POST',
+  })
+}
+
+export function exchangeOAuthCode(
+  request: OAuthExchangeRequest,
+): Promise<SignInResponse> {
+  return requestJson<SignInResponse, OAuthExchangeRequest>({
+    body: request,
+    endpoint: '/auth/oauth/exchange',
+    method: 'POST',
   })
 }

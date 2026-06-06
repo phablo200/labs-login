@@ -4,6 +4,7 @@ export enum AppRoute {
   SignUp = '/sign-up',
   PasswordRecovery = '/password-recovery',
   ResetPassword = '/reset-password',
+  OAuthCallback = '/signin/callback',
   Home = '/home',
   NotFound = '*',
 }

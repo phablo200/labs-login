@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import HomePage from '../pages/HomePage/HomePage'
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage'
+import OAuthCallbackPage from '../pages/OAuthCallbackPage/OAuthCallbackPage'
 import PasswordRecoveryPage from '../pages/PasswordRecoveryPage/PasswordRecoveryPage'
 import ResetPasswordPage from '../pages/ResetPasswordPage/ResetPasswordPage'
 import SignInPage from '../pages/SignInPage/SignInPage'
@@ -22,6 +23,10 @@ function AppRouter() {
         element={<PasswordRecoveryPage />}
       />
       <Route path={AppRoute.ResetPassword} element={<ResetPasswordPage />} />
+      <Route
+        path={AppRoute.OAuthCallback}
+        element={<OAuthCallbackPage />}
+      />
       <Route
         path={AppRoute.Home}
         element={
