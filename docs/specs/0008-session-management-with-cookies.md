@@ -127,7 +127,7 @@ Impacted files and directories:
 
 - A cookie exists but has an empty value.
 - A cookie value contains encoded characters.
-- Multiple cookies exist and only one is the MeLogin session cookie.
+- Multiple cookies exist and only one is the labs-login session cookie.
 - The app runs over HTTP during local development and must not set `Secure`.
 - The app runs over HTTPS and must set `Secure`.
 - A user opens `/home` without a cookie.

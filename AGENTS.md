@@ -23,7 +23,7 @@ Use TypeScript for new app code: `.tsx` for React components and `.ts` for non-J
 
 ## Architecture & UI Requirements
 
-Follow the accepted ADRs in `docs/adrs/`: React Router, React Hook Form + Zod, i18next, Sonner, isolated auth API integration, and cookie-backed session abstraction. Follow `docs/UI_GUIDELINES.md` for MeLogin visuals: professional split desktop layout, single-column mobile flow, light/dark mode tokens, accessible form states, and disabled Google/GitHub buttons until backend OAuth exists.
+Follow the accepted ADRs in `docs/adrs/`: React Router, React Hook Form + Zod, i18next, Sonner, isolated auth API integration, and cookie-backed session abstraction. Follow `docs/UI_GUIDELINES.md` for labs-login visuals: professional split desktop layout, single-column mobile flow, light/dark mode tokens, accessible form states, and disabled Google/GitHub buttons until backend OAuth exists.
 
 ## Testing Guidelines
 

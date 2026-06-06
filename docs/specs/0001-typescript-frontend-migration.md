@@ -2,7 +2,7 @@
 
 ## Objective
 
-- Migrate the MeLogin frontend from JavaScript React files to TypeScript React files in accordance with `docs/adrs/0001-use-typescript-for-frontend.md`.
+- Migrate the labs-login frontend from JavaScript React files to TypeScript React files in accordance with `docs/adrs/0001-use-typescript-for-frontend.md`.
 - Establish strict, maintainable typing for app entry points, React components, asset imports, and initial auth API contracts without implementing full authentication flows yet.
 
 ## Background
@@ -116,4 +116,4 @@ Impacted files and directories:
 
 - Should a dedicated `npm run typecheck` script be added, or should `npm run build` remain the only TypeScript check for now? You should add, and levarage to add an `npm run dev`, if this does not exist.
 - Should TypeScript be introduced before or together with the feature-based folder migration from ADR 0002? Before, I'll do it spec by spec.
-- Should starter Vite UI be preserved during migration or replaced by the first MeLogin screen in a later spec? We can keep Vite UI, I'll do it spec by spec, for now let's migrate to typescript.
+- Should starter Vite UI be preserved during migration or replaced by the first labs-login screen in a later spec? We can keep Vite UI, I'll do it spec by spec, for now let's migrate to typescript.

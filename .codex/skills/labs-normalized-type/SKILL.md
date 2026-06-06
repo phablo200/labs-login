@@ -1,7 +1,7 @@
 ---
 name: labs-normalized-type
 description: >-
-  Enforce role-based naming for TypeScript type declarations in MeLogin:
+  Enforce role-based naming for TypeScript type declarations in labs-login:
   backend inputs end in Request, backend outputs end in Response, backend error
   bodies end in ErrorResponse, React Hook Form values end in FormValues,
   component props end in Props, config shapes end in Config, state shapes end in
@@ -12,7 +12,7 @@ description: >-
 # Labs Normalized Type Names
 
 ## Purpose
-Keep TypeScript type names in MeLogin consistent by naming each declaration after the role it plays in the frontend architecture.
+Keep TypeScript type names in labs-login consistent by naming each declaration after the role it plays in the frontend architecture.
 
 This skill governs type names only. Use it with the repository architecture rules in `.codex/instructions.md`, especially the feature-based layout and auth backend isolation rules.
 

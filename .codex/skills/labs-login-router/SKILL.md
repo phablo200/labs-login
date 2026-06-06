@@ -1,15 +1,15 @@
 ---
 name: labs-login-router
-description: Define and implement React Router routes, redirects, route guards, and navigation links for MeLogin while centralizing route strings in src/routes/routes.enum.ts.
+description: Define and implement React Router routes, redirects, route guards, and navigation links for labs-login while centralizing route strings in src/routes/routes.enum.ts.
 ---
 
 # Labs Login Router Skill
 
 ## Purpose
-Create and update MeLogin routes using React Router while keeping every route path centralized in a shared enum.
+Create and update labs-login routes using React Router while keeping every route path centralized in a shared enum.
 
 ## When to Use
-Use this skill when adding, changing, reviewing, or wiring app routes, redirects, guarded routes, layout routes, links, or imperative navigation in the MeLogin frontend.
+Use this skill when adding, changing, reviewing, or wiring app routes, redirects, guarded routes, layout routes, links, or imperative navigation in the labs-login frontend.
 
 ## Instructions
 

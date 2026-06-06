@@ -3,6 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate } from 'react-router-dom'
+import EmailIcon from '../../components/ui/Icons/EmailIcon'
 import { signIn } from '../../features/auth/api'
 import AuthLayout from '../../features/auth/components/AuthLayout/AuthLayout'
 import PasswordField from '../../features/auth/components/PasswordField/PasswordField'
@@ -70,21 +71,24 @@ function SignInPage() {
           <label className="auth-form__label" htmlFor="sign-in-email">
             {t('auth.fields.email')}
           </label>
-          <input
-            {...register('email')}
-            aria-describedby={
-              errors.email ? 'sign-in-email-error' : undefined
-            }
-            aria-invalid={Boolean(errors.email)}
-            autoComplete="email"
-            className={`auth-form__input${
-              errors.email ? ' auth-form__input--error' : ''
-            }`}
-            id="sign-in-email"
-            name="email"
-            placeholder={t('auth.fields.emailPlaceholder')}
-            type="email"
-          />
+          <div className="auth-form__input-control">
+            <EmailIcon className="auth-form__field-icon" />
+            <input
+              {...register('email')}
+              aria-describedby={
+                errors.email ? 'sign-in-email-error' : undefined
+              }
+              aria-invalid={Boolean(errors.email)}
+              autoComplete="email"
+              className={`auth-form__input auth-form__input--with-prefix${
+                errors.email ? ' auth-form__input--error' : ''
+              }`}
+              id="sign-in-email"
+              name="email"
+              placeholder={t('auth.fields.emailPlaceholder')}
+              type="email"
+            />
+          </div>
           {errors.email?.message ? (
             <p className="auth-form__error" id="sign-in-email-error">
               {errors.email.message}

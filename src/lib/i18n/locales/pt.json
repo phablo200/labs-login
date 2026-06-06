@@ -4,6 +4,7 @@
     "createAccount": "Criar conta",
     "hideField": "Ocultar {{field}}",
     "hidePassword": "Ocultar",
+    "logout": "Sair",
     "requestRecoveryLink": "Solicitar link de recuperação",
     "resetPassword": "Redefinir senha",
     "sendRecoveryLink": "Enviar link de recuperação",
@@ -41,8 +42,8 @@
     },
     "signIn": {
       "createAccount": "Crie uma conta",
-      "footer": "Novo no MeLogin? <link>Crie uma conta</link>",
-      "footerPrefix": "Novo no MeLogin?",
+      "footer": "Novo no labs-login? <link>Crie uma conta</link>",
+      "footerPrefix": "Novo no labs-login?",
       "forgotPassword": "Esqueceu a senha?",
       "secureSession": "Sessão segura",
       "subtitle": "Informe suas credenciais para continuar para seu espaço de trabalho.",
@@ -56,9 +57,9 @@
     }
   },
   "brand": {
-    "ariaLabel": "MeLogin",
+    "ariaLabel": "labs-login",
     "copy": "Uma experiência de autenticação focada para equipes que precisam de acesso claro e confiável.",
-    "name": "MeLogin",
+    "name": "labs-login",
     "title": "Acesse seu espaço com segurança."
   },
   "errors": {
@@ -75,8 +76,10 @@
   "providers": {
     "divider": "ou continue com",
     "github": "Continuar com GitHub",
+    "githubShort": "GitHub",
     "githubUnavailable": "Login com GitHub indisponível no momento.",
     "google": "Continuar com Google",
+    "googleShort": "Google",
     "googleUnavailable": "Login com Google indisponível no momento.",
     "helper": "Login por provedor só fica ativo para provedores configurados no backend.",
     "label": "Opções de login por provedor",

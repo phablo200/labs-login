@@ -2,7 +2,7 @@
 
 ## Objective
 
-- Enable the MeLogin frontend provider buttons for backend-owned Google and GitHub OAuth sign-in.
+- Enable the labs-login frontend provider buttons for backend-owned Google and GitHub OAuth sign-in.
 - Use the backend contract from `/home/danii/myProjects/auth-service/docs/specs/session-with-github-and-google.md` and `/home/danii/myProjects/auth-service/docs/plans/session-with-github-and-google.md`.
 - Keep the current frontend bearer-token behavior: exchange the backend one-time OAuth code for `{ token, user }`, persist the returned JWT through the existing `src/lib/session.ts` abstraction, and continue sending authenticated requests with `Authorization: Bearer <token>`.
 - Do not depend on `docs/specs/0008-session-management-with-cookies.md`; the HTTP-only cookie migration has been aborted for this rollout.

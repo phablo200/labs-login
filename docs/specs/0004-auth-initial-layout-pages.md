@@ -2,7 +2,7 @@
 
 ## Objective
 
-- Replace the temporary route placeholders for `SignInPage`, `SignUpPage`, and `PasswordRecoveryPage` with initial MeLogin authentication layouts.
+- Replace the temporary route placeholders for `SignInPage`, `SignUpPage`, and `PasswordRecoveryPage` with initial labs-login authentication layouts.
 - Establish the reusable split-auth page structure, form shell, and page-specific field layouts required by `docs/UI_GUIDELINES.md`.
 - Keep the implementation ready for later React Hook Form, Zod, i18next, Sonner, and auth API integration without implementing backend behavior in this step.
 
@@ -12,7 +12,7 @@
 - `src/routes/router.tsx` already routes `/sign-in`, `/sign-up`, and `/password-recovery` to dedicated page components.
 - The current `SignInPage`, `SignUpPage`, and `PasswordRecoveryPage` components render temporary placeholder copy and navigation links.
 - `src/index.css` defines initial light/dark design tokens, and `src/App.css` contains minimal placeholder route styles.
-- `docs/UI_GUIDELINES.md` requires a professional split-auth desktop layout, single-column mobile flow, accessible form states, MeLogin branding, light/dark support, and visible disabled Google/GitHub provider buttons.
+- `docs/UI_GUIDELINES.md` requires a professional split-auth desktop layout, single-column mobile flow, accessible form states, labs-login branding, light/dark support, and visible disabled Google/GitHub provider buttons.
 - The project has not yet installed or wired React Hook Form, Zod, i18next, Sonner, auth API calls, or session helpers.
 
 ## Scope
@@ -88,7 +88,7 @@ Impacted files and directories:
 
 - [ ] `SignInPage`, `SignUpPage`, and `PasswordRecoveryPage` no longer show temporary placeholder copy.
 - [ ] The three pages share a consistent auth layout with desktop split panel behavior at `1024px` and above.
-- [ ] Mobile and narrow tablet views render as a single-column auth flow with compact MeLogin branding above the form.
+- [ ] Mobile and narrow tablet views render as a single-column auth flow with compact labs-login branding above the form.
 - [ ] Sign-in renders labeled email and password fields, a primary sign-in action, a forgot-password link, a sign-up link, and disabled Google/GitHub buttons.
 - [ ] Sign-up renders labeled name, email, password, and confirm-password fields, a primary create-account action, a sign-in link, and disabled Google/GitHub buttons.
 - [ ] Password recovery renders a labeled email field, a primary recovery action, and a sign-in link.

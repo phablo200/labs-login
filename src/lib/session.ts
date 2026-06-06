@@ -1,4 +1,4 @@
-const SESSION_COOKIE_NAME = 'melogin_session'
+const SESSION_COOKIE_NAME = 'labs_login_session'
 const SESSION_MAX_AGE_SECONDS = 60 * 60
 
 function getCookieAttributes(maxAge: number): string {

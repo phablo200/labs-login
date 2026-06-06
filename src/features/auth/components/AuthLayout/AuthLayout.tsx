@@ -31,13 +31,13 @@ function AuthLayout({
       </section>
 
       <section className="auth-layout__panel">
-        <div className="auth-layout__form-shell">
-          <div className="auth-layout__topbar">
-            <div className="auth-layout__mobile-brand" aria-hidden="true">
-              {t('brand.name')}
-            </div>
-            <LanguageSelector />
+        <div className="auth-layout__topbar">
+          <div className="auth-layout__mobile-brand" aria-hidden="true">
+            {t('brand.name')}
           </div>
+          <LanguageSelector />
+        </div>
+        <div className="auth-layout__form-shell">
           <div className="auth-layout__header">
             <h1 id={labelledBy}>{title}</h1>
             <p>{subtitle}</p>

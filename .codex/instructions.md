@@ -70,7 +70,7 @@ Do not spread token reads/writes across components. Clear session state on logou
 
 ## UI Rules
 
-Build MeLogin with a professional split-auth design inspired by `me-login-1.png`: warm illustrated brand panel on desktop, calm form panel on the right, and single-column mobile screens.
+Build labs-login with a professional split-auth design inspired by the original split-auth reference: warm illustrated brand panel on desktop, calm form panel on the right, and single-column mobile screens.
 
 Use the design tokens and component rules in `docs/UI_GUIDELINES.md`. Support light and dark mode. Forms must be accessible, keyboard navigable, responsive, and safe for Portuguese and English text expansion.
 

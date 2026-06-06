@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import EyeIcon from '../../../../components/ui/Icons/EyeIcon'
+import EyeSlashIcon from '../../../../components/ui/Icons/EyeSlashIcon'
+import PasswordIcon from '../../../../components/ui/Icons/PasswordIcon'
 import type { PasswordFieldProps } from './PasswordField.types'
 
 function PasswordField({
@@ -25,6 +28,7 @@ function PasswordField({
         {label}
       </label>
       <div className="auth-form__password-control">
+        <PasswordIcon className="auth-form__field-icon" />
         <input
           {...registration}
           aria-describedby={errorId}
@@ -42,7 +46,11 @@ function PasswordField({
           onClick={() => setIsVisible((current) => !current)}
           type="button"
         >
-          {t(isVisible ? 'actions.hidePassword' : 'actions.showPassword')}
+          {isVisible ? (
+            <EyeSlashIcon className="auth-form__password-toggle-icon" />
+          ) : (
+            <EyeIcon className="auth-form__password-toggle-icon" />
+          )}
         </button>
       </div>
       {error ? (

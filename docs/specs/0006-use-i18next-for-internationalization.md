@@ -3,7 +3,7 @@
 ## Objective
 
 - Implement the frontend internationalization foundation accepted in `docs/adrs/0006-use-i18next-for-internationalization.md`.
-- Support English and Portuguese UI copy across the current MeLogin routes and auth layout.
+- Support English and Portuguese UI copy across the current labs-login routes and auth layout.
 - Persist the selected language and expose it to backend auth requests through the `accept-language` header.
 - Make missing or hardcoded user-facing strings easier to detect during development.
 
@@ -38,7 +38,7 @@
   - `NotFoundPage`
 - Add a language control that is visible or reachable from auth screens and has an accessible name.
 - Update `document.documentElement.lang` whenever the active language changes.
-- Persist selected language in local storage with a stable key such as `melogin.language`.
+- Persist selected language in local storage with a stable key such as `labs-login.language`.
 - Expose a typed helper that returns the active backend language value for `accept-language`.
 - Add localized fallback strings for generic auth errors and future validation messages so later form/API specs can reuse them.
 - Configure development behavior so missing translation keys are visible in the console or rendered output during local development.

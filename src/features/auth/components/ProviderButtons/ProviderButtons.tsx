@@ -1,12 +1,14 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import GithubIcon from '../../../../components/ui/Icons/GithubIcon'
+import GoogleIcon from '../../../../components/ui/Icons/GoogleIcon'
+import { AppRoute } from '../../../../routes/routes.enum'
 import {
   authorizeOAuthProvider,
   getOAuthProviders,
 } from '../../api'
 import { showAuthErrorToast } from '../../toast'
 import type { OAuthProvider } from '../../types'
-import { AppRoute } from '../../../../routes/routes.enum'
 
 type ProviderButtonsState = 'loading' | 'ready' | 'unavailable'
 
@@ -99,26 +101,34 @@ function ProviderButtons() {
       </div>
       <div className="auth-providers__buttons">
         <button
+          aria-label={t('providers.google')}
           className="auth-provider-button"
           disabled={isProviderDisabled('google')}
           onClick={() => void handleProviderClick('google')}
           title={getProviderTitle('google')}
           type="button"
         >
-          {pendingProvider === 'google'
-            ? t('providers.redirecting')
-            : t('providers.google')}
+          <GoogleIcon className="auth-provider-button__icon" />
+          <span>
+            {pendingProvider === 'google'
+              ? t('providers.redirecting')
+              : t('providers.googleShort')}
+          </span>
         </button>
         <button
+          aria-label={t('providers.github')}
           className="auth-provider-button"
           disabled={isProviderDisabled('github')}
           onClick={() => void handleProviderClick('github')}
           title={getProviderTitle('github')}
           type="button"
         >
-          {pendingProvider === 'github'
-            ? t('providers.redirecting')
-            : t('providers.github')}
+          <GithubIcon className="auth-provider-button__icon auth-provider-button__icon--github" />
+          <span>
+            {pendingProvider === 'github'
+              ? t('providers.redirecting')
+              : t('providers.githubShort')}
+          </span>
         </button>
       </div>
       {status === 'unavailable' ? (

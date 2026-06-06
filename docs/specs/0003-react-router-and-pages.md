@@ -2,7 +2,7 @@
 
 ## Objective
 
-- Introduce React Router as the client-side routing layer for MeLogin.
+- Introduce React Router as the client-side routing layer for labs-login.
 - Define route-level page components under `src/pages` for the initial authentication and home routes required by ADR 0003 and `docs/SRS.md`.
 - Preserve current app behavior where possible while preparing explicit URLs for later auth implementation.
 
@@ -38,7 +38,7 @@
 - Calling backend auth endpoints.
 - Implementing session persistence or route guards.
 - Implementing React Hook Form, Zod, i18next, Sonner, or provider login behavior.
-- Replacing the visual starter UI with the final MeLogin design.
+- Replacing the visual starter UI with the final labs-login design.
 - Adding full automated test coverage unless a test framework already exists.
 
 ## Proposed Approach
@@ -118,7 +118,7 @@ Impacted files and directories:
   - Mitigation: Do not add protected routes until the session strategy from ADR 0008 is implemented.
 
 - Risk: Starter page becomes unused.
-  - Mitigation: Remove it only if no route uses it, or keep it temporarily until the final MeLogin pages replace placeholders.
+  - Mitigation: Remove it only if no route uses it, or keep it temporarily until the final labs-login pages replace placeholders.
 
 - Risk: Future i18n work may require changing placeholder copy.
   - Mitigation: Keep copy temporary and avoid hardcoding final user-facing content in this spec.

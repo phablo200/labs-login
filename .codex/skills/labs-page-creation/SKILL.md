@@ -1,12 +1,12 @@
 ---
 name: labs-page-creation
-description: Create and organize React route-level pages for MeLogin under src/pages, using folder-per-page structure, labs-login-router for route wiring, and labs-component for extracted components.
+description: Create and organize React route-level pages for labs-login under src/pages, using folder-per-page structure, labs-login-router for route wiring, and labs-component for extracted components.
 ---
 
 # Labs Page Creation Skill
 
 ## Purpose
-Create route-level React TypeScript pages for MeLogin while keeping pages thin, routes centralized, and reusable or feature-specific UI extracted through the component conventions.
+Create route-level React TypeScript pages for labs-login while keeping pages thin, routes centralized, and reusable or feature-specific UI extracted through the component conventions.
 
 ## When to Use
 Use this skill when adding, moving, reviewing, or wiring pages under `src/pages`.

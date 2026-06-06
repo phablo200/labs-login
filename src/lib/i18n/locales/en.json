@@ -4,6 +4,7 @@
     "createAccount": "Create account",
     "hideField": "Hide {{field}}",
     "hidePassword": "Hide",
+    "logout": "Log out",
     "requestRecoveryLink": "Request recovery link",
     "resetPassword": "Reset password",
     "sendRecoveryLink": "Send recovery link",
@@ -41,8 +42,8 @@
     },
     "signIn": {
       "createAccount": "Create an account",
-      "footer": "New to MeLogin? <link>Create an account</link>",
-      "footerPrefix": "New to MeLogin?",
+      "footer": "New to labs-login? <link>Create an account</link>",
+      "footerPrefix": "New to labs-login?",
       "forgotPassword": "Forgot password?",
       "secureSession": "Secure session",
       "subtitle": "Enter your credentials to continue to your workspace.",
@@ -56,9 +57,9 @@
     }
   },
   "brand": {
-    "ariaLabel": "MeLogin",
+    "ariaLabel": "labs-login",
     "copy": "A focused authentication experience for teams that need clear, reliable access.",
-    "name": "MeLogin",
+    "name": "labs-login",
     "title": "Access your workspace securely."
   },
   "errors": {
@@ -75,8 +76,10 @@
   "providers": {
     "divider": "or continue with",
     "github": "Continue with GitHub",
+    "githubShort": "GitHub",
     "githubUnavailable": "GitHub login is not available right now.",
     "google": "Continue with Google",
+    "googleShort": "Google",
     "googleUnavailable": "Google login is not available right now.",
     "helper": "Provider login is enabled only for backend-configured providers.",
     "label": "Provider login options",

@@ -1,4 +1,4 @@
-# UI Guidelines: MeLogin
+# UI Guidelines: labs-login
 
 ## Status
 
@@ -10,19 +10,19 @@ Accepted
 
 ## Context
 
-MeLogin is a focused authentication frontend for sign in, sign up, password recovery, reset password, and future provider login. The primary visual reference is `me-login-1.png`: a desktop split-screen layout with an expressive illustration area and a clear form area. The final product should keep that memorable split composition and magenta accent language, but with a more professional finish than the reference.
+labs-login is a focused authentication frontend for sign in, sign up, password recovery, reset password, and future provider login. The primary visual reference is the original split-screen auth image: a desktop layout with an expressive illustration area and a clear form area. The final product should keep that memorable split composition and magenta accent language, but with a more professional finish than the reference.
 
 Secondary references support clean card forms, strong primary buttons, and mobile-first auth flows.
 
 ## Decision 1: Visual Direction
 
-MeLogin shall use a professional split-auth design with a warm illustrated brand panel and a calm, high-clarity form panel.
+labs-login shall use a professional split-auth design with a warm illustrated brand panel and a calm, high-clarity form panel.
 
 - Use the left side on desktop for brand artwork, short value copy, and subtle decorative elements.
 - Use the right side on desktop for the active authentication form.
 - Keep illustration playful but restrained; avoid overly cartoonish or distracting visuals.
 - Use generous whitespace, clear form hierarchy, and predictable controls.
-- Product name shall be `MeLogin`.
+- Product name shall be `labs-login`.
 
 ## Decision 2: Layout System
 

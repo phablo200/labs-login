@@ -4,4 +4,4 @@ export type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number]
 
 export const DEFAULT_LANGUAGE: SupportedLanguage = 'en'
 
-export const LANGUAGE_STORAGE_KEY = 'melogin.language'
+export const LANGUAGE_STORAGE_KEY = 'labs-login.language'

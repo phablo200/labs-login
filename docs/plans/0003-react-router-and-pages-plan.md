@@ -18,7 +18,7 @@
 - Use route-level page components under `src/pages`.
 - `/` redirects to `/sign-in`.
 - `/home` renders a minimal placeholder page.
-- Do not implement route guards, backend auth calls, session persistence, final auth forms, i18n, toasts, or final MeLogin visuals in this plan.
+- Do not implement route guards, backend auth calls, session persistence, final auth forms, i18n, toasts, or final labs-login visuals in this plan.
 
 ## Current State
 
@@ -176,7 +176,7 @@ Confirm:
 
 ## Deferred Work
 
-- Final MeLogin auth screen design from `docs/UI_GUIDELINES.md`.
+- Final labs-login auth screen design from `docs/UI_GUIDELINES.md`.
 - Auth forms, validation, and backend calls.
 - Route guards and authenticated redirects.
 - Session persistence and token validation.

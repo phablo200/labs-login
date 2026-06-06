@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { toast } from 'sonner'
+import EmailIcon from '../../components/ui/Icons/EmailIcon'
 import { requestPasswordRecovery } from '../../features/auth/api'
 import AuthLayout from '../../features/auth/components/AuthLayout/AuthLayout'
 import { showAuthErrorToast } from '../../features/auth/toast'
@@ -65,21 +66,24 @@ function PasswordRecoveryPage() {
           <label className="auth-form__label" htmlFor="password-recovery-email">
             {t('auth.fields.email')}
           </label>
-          <input
-            {...register('email')}
-            aria-describedby={
-              errors.email ? 'password-recovery-email-error' : undefined
-            }
-            aria-invalid={Boolean(errors.email)}
-            autoComplete="email"
-            className={`auth-form__input${
-              errors.email ? ' auth-form__input--error' : ''
-            }`}
-            id="password-recovery-email"
-            name="email"
-            placeholder={t('auth.fields.emailPlaceholder')}
-            type="email"
-          />
+          <div className="auth-form__input-control">
+            <EmailIcon className="auth-form__field-icon" />
+            <input
+              {...register('email')}
+              aria-describedby={
+                errors.email ? 'password-recovery-email-error' : undefined
+              }
+              aria-invalid={Boolean(errors.email)}
+              autoComplete="email"
+              className={`auth-form__input auth-form__input--with-prefix${
+                errors.email ? ' auth-form__input--error' : ''
+              }`}
+              id="password-recovery-email"
+              name="email"
+              placeholder={t('auth.fields.emailPlaceholder')}
+              type="email"
+            />
+          </div>
           {errors.email?.message ? (
             <p className="auth-form__error" id="password-recovery-email-error">
               {errors.email.message}

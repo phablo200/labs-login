@@ -1,12 +1,12 @@
 ---
 name: labs-component
-description: Create and organize React TypeScript components for MeLogin, choosing shared src/components/ui or feature-specific src/features/<feature-name>/components placement with folder-per-component files and no barrel exports.
+description: Create and organize React TypeScript components for labs-login, choosing shared src/components/ui or feature-specific src/features/<feature-name>/components placement with folder-per-component files and no barrel exports.
 ---
 
 # Labs Component Skill
 
 ## Purpose
-Create React TypeScript components in the correct MeLogin location while preserving feature ownership, reusable UI boundaries, accessibility, and the accepted UI guidelines.
+Create React TypeScript components in the correct labs-login location while preserving feature ownership, reusable UI boundaries, accessibility, and the accepted UI guidelines.
 
 ## When to Use
 Use this skill when adding, moving, reviewing, or wiring React components under `src/components`, `src/components/ui`, or `src/features/<feature-name>/components`.
