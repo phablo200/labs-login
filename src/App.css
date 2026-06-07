@@ -446,8 +446,9 @@
 }
 
 .auth-provider-button:disabled {
+  color: var(--text-secondary);
   cursor: not-allowed;
-  opacity: 0.72;
+  opacity: 1;
 }
 
 .auth-provider-button:not(:disabled):hover {

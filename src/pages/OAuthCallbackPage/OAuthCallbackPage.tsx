@@ -54,26 +54,28 @@ function OAuthCallbackPage() {
     const code = searchParams.get('code')
     const reason = searchParams.get('reason')
 
+    function returnToSignInWithError(message: string) {
+      navigate(AppRoute.SignIn, { replace: true })
+      window.setTimeout(() => toast.error(message), 0)
+    }
+
     async function processCallback() {
       if (!isOAuthCallbackStatus(status)) {
-        toast.error(t('providers.oauth.errors.callback'))
-        navigate(AppRoute.SignIn, { replace: true })
+        returnToSignInWithError(t('providers.oauth.errors.callback'))
         return
       }
 
       if (status === 'error') {
-        toast.error(
+        returnToSignInWithError(
           isOAuthCallbackReason(reason)
             ? getOAuthCallbackReasonMessage(reason, t)
             : t('providers.oauth.errors.callback'),
         )
-        navigate(AppRoute.SignIn, { replace: true })
         return
       }
 
       if (!code) {
-        toast.error(t('providers.oauth.errors.callback'))
-        navigate(AppRoute.SignIn, { replace: true })
+        returnToSignInWithError(t('providers.oauth.errors.callback'))
         return
       }
 

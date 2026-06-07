@@ -20,4 +20,16 @@ export default defineConfig([
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
   },
+  {
+    files: ['cypress/**/*.ts'],
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.mocha,
+        cy: 'readonly',
+        Cypress: 'readonly',
+        expect: 'readonly',
+      },
+    },
+  },
 ])
