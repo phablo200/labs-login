@@ -14,6 +14,7 @@ This is a Vite React app that is being migrated to TypeScript. Target source lay
 - `npm run build`: create a production build in `dist/`.
 - `npm run preview`: serve the production build locally for verification.
 - `npm run lint`: run ESLint across the project.
+- `npm run test:e2e`: start the Vite e2e server and run Cypress headlessly.
 
 Run `npm install` after cloning or when `package-lock.json` changes.
 
@@ -27,7 +28,11 @@ Follow the accepted ADRs in `docs/adrs/`: React Router, React Hook Form + Zod, i
 
 ## Testing Guidelines
 
-No automated test runner is currently configured. For now, validate changes with `npm run lint`, `npm run build`, and manual browser checks. When adding tests, prefer Vitest and React Testing Library. Place tests near covered code with names like `SignInForm.test.tsx` or `session.test.ts`.
+Current accepted testing strategy is Cypress for auth frontend coverage; follow `docs/adrs/0010-testing-strategy-for-auth-frontend.md` and `docs/specs/0010-testing-strategy.md` when creating or updating automated tests. Place Cypress specs under `cypress/e2e`, prefer mocked backend responses at the network boundary, and validate relevant changes with `npm run lint`, `npm run build`, and `npm run test:e2e` when feasible.
+
+## Subagent Workflow
+
+Use the `labs-automated-tests` subagent whenever new code is introduced or existing behavior is changed in this project. The subagent is responsible for creating new automated tests for new behavior and updating existing automated tests for changed behavior.
 
 ## Commit & Pull Request Guidelines
 

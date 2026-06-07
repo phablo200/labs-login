@@ -49,6 +49,12 @@ For a visible browser from the terminal, keep `npm run dev:e2e` running and use:
 npm run cypress:run -- --headed
 ```
 
+For recording a video
+
+```bash
+npm run cypress:run -- --config video=true
+```
+
 Use `npm run test:e2e` for the full headless suite, `npm run cypress:open` for
 interactive debugging, and `npm run cypress:run -- --headed` when you want the
 terminal run with a visible browser.

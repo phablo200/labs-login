@@ -44,7 +44,7 @@ Keep feature-specific auth code under `src/features/auth`. Keep reusable primiti
 - Use React Hook Form and Zod for form state and validation.
 - Use i18next for English and Portuguese UI copy.
 - Use Sonner for toast notifications.
-- Prefer Vitest and React Testing Library when adding automated tests.
+- Use Cypress for auth frontend automated tests, following ADR 0010.
 
 ## Auth and Backend Integration
 
@@ -76,12 +76,18 @@ Use the design tokens and component rules in `docs/UI_GUIDELINES.md`. Support li
 
 Do not implement novelty/skull imagery directly unless explicitly approved; use a more professional illustration direction.
 
+## Subagent Workflow
+
+When a task introduces new code or changes existing behavior, execute the `labs-automated-tests` subagent before completing the task. Use it to create new automated tests for new behavior or update existing tests for changed behavior, following ADR 0010 and `docs/specs/0010-testing-strategy.md`.
+
+Do not introduce Vitest, React Testing Library, Jest, or unit tests for auth frontend coverage unless a newer accepted ADR supersedes ADR 0010.
+
 ## Quality Gates
 
 Before completing implementation work, run the relevant checks available in the repo:
 
 - `npm run lint`
 - `npm run build`
-- Test command when configured
+- `npm run test:e2e` when frontend behavior is affected
 
 If a command cannot be run, report why and what remains unverified.
