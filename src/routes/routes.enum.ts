@@ -6,5 +6,6 @@ export enum AppRoute {
   ResetPassword = '/reset-password',
   OAuthCallback = '/signin/callback',
   Home = '/home',
+  ReviewResult = '/review-result',
   NotFound = '*',
 }

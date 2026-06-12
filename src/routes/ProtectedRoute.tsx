@@ -1,7 +1,11 @@
 import { useEffect, useState, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Navigate } from 'react-router-dom'
-import { validateToken } from '../features/auth/api'
+import { getMe } from '../features/auth/api'
+import {
+  clearStoredAuthenticatedUser,
+  saveAuthenticatedUser,
+} from '../features/auth/userStorage'
 import { clearSessionToken, getSessionToken } from '../lib/session'
 import { AppRoute } from './routes.enum'
 
@@ -25,15 +29,17 @@ function ProtectedRoute({ children }: ProtectedRouteProps) {
       return
     }
 
-    validateToken(token)
-      .then(() => {
+    getMe(token)
+      .then((user) => {
         if (isCurrent) {
+          saveAuthenticatedUser(user)
           setStatus('authenticated')
         }
       })
       .catch(() => {
         if (isCurrent) {
           clearSessionToken()
+          clearStoredAuthenticatedUser()
           setStatus('anonymous')
         }
       })

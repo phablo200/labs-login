@@ -1,4 +1,5 @@
 import type {
+  AuthenticatedUserResponse,
   AuthUser,
   MessageResponse,
   OAuthAuthorizeResponse,
@@ -46,4 +47,16 @@ export function oauthAuthorizeResponse(
 
 export function tokenValidResponse(): ValidateTokenResponse {
   return { valid: true }
+}
+
+export function authenticatedUserResponse(
+  overrides: Partial<AuthenticatedUserResponse> = {},
+): AuthenticatedUserResponse {
+  return {
+    application_id: 'e2e-application',
+    email: 'user@example.com',
+    id: '00000000-0000-0000-0000-000000000001',
+    profile_id: 'profile-e2e',
+    ...overrides,
+  }
 }

@@ -56,6 +56,13 @@ export type AuthErrorResponse = {
   error: string
 }
 
+export type AuthenticatedUserResponse = {
+  id: string
+  email: string
+  profile_id: string
+  application_id: string
+}
+
 export type ValidateTokenResponse = {
   valid: true
 }

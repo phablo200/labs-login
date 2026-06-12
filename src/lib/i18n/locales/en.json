@@ -73,6 +73,70 @@
     "label": "Language",
     "portuguese": "Portuguese"
   },
+  "labsReviewer": {
+    "agentDetail": {
+      "close": "Close",
+      "empty": "Select an agent step to inspect its result.",
+      "emptyResult": "No result was stored for this agent step.",
+      "eyebrow": "Agent result",
+      "loading": "Loading agent result...",
+      "title": "Agent details"
+    },
+    "dashboard": {
+      "copy": "Upload markdown notes, follow processing status, and open generated outputs.",
+      "eyebrow": "Labs Reviewer",
+      "signedInAs": "Signed in as {{email}}",
+      "title": "Review workspace"
+    },
+    "outputs": {
+      "copy": "Generated files open in a new browser tab.",
+      "emptyMarkdown": "No markdown outputs yet.",
+      "emptyPdf": "No PDF outputs yet.",
+      "eyebrow": "Outputs",
+      "markdownTitle": "Markdown ({{count}})",
+      "pdfTitle": "PDF ({{count}})",
+      "refresh": "Refresh",
+      "title": "Generated outputs"
+    },
+    "process": {
+      "copy": "Process status comes from the labs-reviewer backend.",
+      "createdAt": "Created",
+      "details": "Details",
+      "empty": "Upload a markdown file to start a process.",
+      "eyebrow": "Process",
+      "file": "File",
+      "loop": "Loop {{value}}",
+      "polling": "Checking status...",
+      "processId": "Process ID",
+      "title": "Process status",
+      "waiting": "Waiting for agent steps to start."
+    },
+    "result": {
+      "backHome": "Back to dashboard",
+      "copy": "This result page is ready for the next implementation step.",
+      "eyebrow": "Review result",
+      "missingProcess": "No process id was provided for this result page.",
+      "navLabel": "Result page navigation",
+      "title": "Review result"
+    },
+    "status": {
+      "FAILED": "Failed",
+      "IN_PROGRESS": "In progress",
+      "SUCCEEDED": "Succeeded"
+    },
+    "upload": {
+      "copy": "Send one UTF-8 markdown file to start a review process.",
+      "emptySelection": "No markdown file selected.",
+      "eyebrow": "Upload",
+      "fileLabel": "Markdown file",
+      "submit": "Send for review",
+      "title": "Submit markdown"
+    },
+    "validation": {
+      "markdownFile": "Select a .md file.",
+      "requiredFile": "Select a markdown file before submitting."
+    }
+  },
   "providers": {
     "divider": "or continue with",
     "github": "Continue with GitHub",

@@ -8,9 +8,14 @@ declare global {
   namespace Cypress {
     interface Chainable {
       authUrl(endpoint: string): string
+      labsReviewerUrl(endpoint: string): string
       clearAuthState(): Chainable<void>
       setSessionCookie(token?: string): Chainable<void>
       assertAuthHeaders(
+        request: Interception['request'],
+        language?: 'en' | 'pt',
+      ): Chainable<void>
+      assertLabsReviewerHeaders(
         request: Interception['request'],
         language?: 'en' | 'pt',
       ): Chainable<void>

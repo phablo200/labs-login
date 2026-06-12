@@ -1,9 +1,9 @@
-import { tokenValidResponse } from '../../support/authResponses'
+import { authenticatedUserResponse } from '../../support/authResponses'
 
-const authApiBaseUrl = Cypress.env('authApiBaseUrl') as string
+const labsReviewerApiBaseUrl = Cypress.env('labsReviewerApiBaseUrl') as string
 
-function authUrl(endpoint: string): string {
-  return `${authApiBaseUrl}${endpoint}`
+function labsReviewerUrl(endpoint: string): string {
+  return `${labsReviewerApiBaseUrl}${endpoint}`
 }
 
 describe('Protected routes and session validation', () => {
@@ -20,47 +20,66 @@ describe('Protected routes and session validation', () => {
   })
 
   it('validates an existing session cookie and renders home', () => {
-    cy.intercept('GET', authUrl('/auth/validate-token'), {
-      body: tokenValidResponse(),
+    cy.intercept('GET', labsReviewerUrl('/me'), {
+      body: authenticatedUserResponse(),
       statusCode: 200,
-    }).as('validateToken')
+    }).as('getMe')
+    cy.intercept('GET', labsReviewerUrl('/outputs/makdown'), {
+      body: { count: 0, items: [] },
+      statusCode: 200,
+    }).as('listMarkdownOutputs')
+    cy.intercept('GET', labsReviewerUrl('/outputs/pdf'), {
+      body: { count: 0, items: [] },
+      statusCode: 200,
+    }).as('listPdfOutputs')
     cy.setSessionCookie('valid-token')
 
     cy.visit('/home')
     cy.contains('Checking your session...').should('be.visible')
 
-    cy.wait('@validateToken').then(({ request }) => {
-      cy.assertAuthHeaders(request)
+    cy.wait('@getMe').then(({ request }) => {
+      cy.assertLabsReviewerHeaders(request)
       expect(request.headers.authorization).to.equal('Bearer valid-token')
     })
-    cy.contains('h1', 'Home').should('be.visible')
+    cy.contains('h1', 'Review workspace').should('be.visible')
     cy.location('pathname').should('eq', '/home')
+    cy.window()
+      .its('localStorage')
+      .invoke('getItem', 'labs-login.authenticated-user')
+      .should('contain', 'user@example.com')
   })
 
   it('clears an invalid session cookie and redirects to sign in', () => {
     cy.stubProviderStatus()
-    cy.intercept('GET', authUrl('/auth/validate-token'), {
+    cy.intercept('GET', labsReviewerUrl('/me'), {
       body: { error: 'Invalid token.' },
       statusCode: 401,
-    }).as('validateToken')
+    }).as('getMe')
     cy.setSessionCookie('invalid-token')
+    cy.window().then((window) => {
+      window.localStorage.setItem('labs-login.authenticated-user', '{}')
+    })
 
     cy.visit('/home')
-    cy.wait('@validateToken')
+    cy.wait('@getMe')
 
     cy.location('pathname').should('eq', '/sign-in')
     cy.getCookie('labs_login_session').should('be.null')
+    cy.window()
+      .its('localStorage')
+      .invoke('getItem', 'labs-login.authenticated-user')
+      .should('be.null')
   })
 
   it('clears the session when token validation cannot reach the service', () => {
     cy.stubProviderStatus()
-    cy.intercept('GET', authUrl('/auth/validate-token'), {
+    cy.intercept('GET', labsReviewerUrl('/me'), {
       forceNetworkError: true,
-    }).as('validateToken')
+    }).as('getMe')
     cy.setSessionCookie('network-failure-token')
 
     cy.visit('/home')
-    cy.wait('@validateToken')
+    cy.wait('@getMe')
 
     cy.location('pathname').should('eq', '/sign-in')
     cy.getCookie('labs_login_session').should('be.null')

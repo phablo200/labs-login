@@ -1,4 +1,8 @@
-import { getAuthApiConfig, AuthConfigError } from './config'
+import {
+  getAuthApiConfig,
+  getLabsReviewerApiConfig,
+  RuntimeConfigError,
+} from './config'
 import { getBackendLanguage } from './language'
 
 export type HttpMethod = 'GET' | 'PATCH' | 'POST'
@@ -18,8 +22,21 @@ export type RequestJsonOptions<TBody> = {
   bearerToken?: string
 }
 
+export type RequestLabsReviewerFormOptions = {
+  endpoint: string
+  formData: FormData
+  bearerToken: string
+}
+
+export type RequestLabsReviewerJsonOptions = {
+  endpoint: string
+  method: Extract<HttpMethod, 'GET'>
+  bearerToken: string
+}
+
 type BackendErrorResponse = {
   error?: unknown
+  detail?: unknown
 }
 
 export class ApiRequestError extends Error {
@@ -51,8 +68,13 @@ function getBackendErrorMessage(data: unknown): string | null {
   }
 
   const error = (data as BackendErrorResponse).error
+  const detail = (data as BackendErrorResponse).detail
 
-  return typeof error === 'string' && error.trim() ? error : null
+  if (typeof error === 'string' && error.trim()) {
+    return error
+  }
+
+  return typeof detail === 'string' && detail.trim() ? detail : null
 }
 
 async function parseJsonResponse(response: Response): Promise<unknown> {
@@ -88,7 +110,7 @@ export async function requestJson<TResponse, TBody = unknown>({
   try {
     config = getAuthApiConfig()
   } catch (error) {
-    if (error instanceof AuthConfigError) {
+    if (error instanceof RuntimeConfigError) {
       if (import.meta.env.DEV) {
         console.error(error.message)
       }
@@ -153,4 +175,109 @@ export async function requestJson<TResponse, TBody = unknown>({
   }
 
   return data as TResponse
+}
+
+function getLabsReviewerConfigOrThrow() {
+  try {
+    return getLabsReviewerApiConfig()
+  } catch (error) {
+    if (error instanceof RuntimeConfigError) {
+      if (import.meta.env.DEV) {
+        console.error(error.message)
+      }
+
+      throw new ApiRequestError('configuration', error.message, {
+        cause: error,
+      })
+    }
+
+    throw error
+  }
+}
+
+async function handleLabsReviewerResponse<TResponse>(
+  response: Response,
+): Promise<TResponse> {
+  const data = await parseJsonResponse(response)
+
+  if (!response.ok) {
+    if (response.status >= 400 && response.status < 500) {
+      const message = getBackendErrorMessage(data)
+
+      if (message) {
+        throw new ApiRequestError('backend', message, {
+          status: response.status,
+        })
+      }
+
+      throw new ApiRequestError('auth', 'Labs reviewer rejected the request', {
+        status: response.status,
+      })
+    }
+
+    throw new ApiRequestError('service', 'Labs reviewer service unavailable', {
+      status: response.status,
+    })
+  }
+
+  return data as TResponse
+}
+
+export async function requestLabsReviewerJson<TResponse>({
+  bearerToken,
+  endpoint,
+  method,
+}: RequestLabsReviewerJsonOptions): Promise<TResponse> {
+  const config = getLabsReviewerConfigOrThrow()
+  const headers: HeadersInit = {
+    'accept-language': getBackendLanguage(),
+    Authorization: `Bearer ${bearerToken}`,
+  }
+
+  let response: Response
+
+  try {
+    response = await fetch(buildUrl(config.baseUrl, endpoint), {
+      headers,
+      method,
+    })
+  } catch (error) {
+    throw new ApiRequestError(
+      'network',
+      'Network failure while contacting labs reviewer',
+      { cause: error },
+    )
+  }
+
+  return handleLabsReviewerResponse<TResponse>(response)
+}
+
+export async function requestLabsReviewerForm<TResponse>({
+  bearerToken,
+  endpoint,
+  formData,
+}: RequestLabsReviewerFormOptions): Promise<TResponse> {
+  const config = getLabsReviewerConfigOrThrow()
+  const headers: HeadersInit = {
+    'accept-language': getBackendLanguage(),
+    Authorization: `Bearer ${bearerToken}`,
+  }
+
+  let response: Response
+
+  try {
+    response = await fetch(buildUrl(config.baseUrl, endpoint), {
+      body: formData,
+      headers,
+      method: 'POST',
+    })
+  } catch (error) {
+    throw new ApiRequestError(
+      'network',
+      'Network failure while contacting labs reviewer',
+      { cause: error },
+    )
+  }
+
+  return handleLabsReviewerResponse<TResponse>(response)
 }

@@ -1,5 +1,6 @@
-import { requestJson } from '../../lib/api'
+import { requestJson, requestLabsReviewerJson } from '../../lib/api'
 import type {
+  AuthenticatedUserResponse,
   ForgotPasswordRequest,
   MessageResponse,
   OAuthAuthorizeRequest,
@@ -114,5 +115,13 @@ export function exchangeOAuthCode(
     body: request,
     endpoint: '/auth/oauth/exchange',
     method: 'POST',
+  })
+}
+
+export function getMe(token: string): Promise<AuthenticatedUserResponse> {
+  return requestLabsReviewerJson<AuthenticatedUserResponse>({
+    bearerToken: token,
+    endpoint: '/me',
+    method: 'GET',
   })
 }

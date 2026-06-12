@@ -1,13 +1,18 @@
 import {
+  authenticatedUserResponse,
   authSuccessResponse,
   providerStatusResponse,
-  tokenValidResponse,
 } from '../../support/authResponses'
 
 const authApiBaseUrl = Cypress.env('authApiBaseUrl') as string
+const labsReviewerApiBaseUrl = Cypress.env('labsReviewerApiBaseUrl') as string
 
 function authUrl(endpoint: string): string {
   return `${authApiBaseUrl}${endpoint}`
+}
+
+function labsReviewerUrl(endpoint: string): string {
+  return `${labsReviewerApiBaseUrl}${endpoint}`
 }
 
 function visitSignUp() {
@@ -39,10 +44,18 @@ describe('Sign up', () => {
   })
 
   it('submits without confirmPassword, stores the session, and redirects home', () => {
-    cy.intercept('GET', authUrl('/auth/validate-token'), {
-      body: tokenValidResponse(),
+    cy.intercept('GET', labsReviewerUrl('/me'), {
+      body: authenticatedUserResponse(),
       statusCode: 200,
-    }).as('validateToken')
+    }).as('getMe')
+    cy.intercept('GET', labsReviewerUrl('/outputs/makdown'), {
+      body: { count: 0, items: [] },
+      statusCode: 200,
+    }).as('listMarkdownOutputs')
+    cy.intercept('GET', labsReviewerUrl('/outputs/pdf'), {
+      body: { count: 0, items: [] },
+      statusCode: 200,
+    }).as('listPdfOutputs')
     cy.intercept('POST', authUrl('/auth/signup'), {
       body: authSuccessResponse(),
       delay: 250,
@@ -70,12 +83,19 @@ describe('Sign up', () => {
       })
       expect(request.body).not.to.have.property('confirmPassword')
     })
-    cy.wait('@validateToken')
+    cy.wait('@getMe').then(({ request }) => {
+      cy.assertLabsReviewerHeaders(request)
+      expect(request.headers.authorization).to.equal('Bearer e2e-session-token')
+    })
 
     cy.location('pathname').should('eq', '/home')
     cy.getCookie('labs_login_session')
       .its('value')
       .should('eq', 'e2e-session-token')
+    cy.window()
+      .its('localStorage')
+      .invoke('getItem', 'labs-login.authenticated-user')
+      .should('contain', 'user@example.com')
   })
 
   it('shows backend duplicate-email errors and service fallbacks', () => {

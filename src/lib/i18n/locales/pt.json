@@ -73,6 +73,70 @@
     "label": "Idioma",
     "portuguese": "Português"
   },
+  "labsReviewer": {
+    "agentDetail": {
+      "close": "Fechar",
+      "empty": "Selecione uma etapa de agente para inspecionar o resultado.",
+      "emptyResult": "Nenhum resultado foi armazenado para esta etapa.",
+      "eyebrow": "Resultado do agente",
+      "loading": "Carregando resultado do agente...",
+      "title": "Detalhes do agente"
+    },
+    "dashboard": {
+      "copy": "Envie notas em markdown, acompanhe o status do processamento e abra os arquivos gerados.",
+      "eyebrow": "Labs Reviewer",
+      "signedInAs": "Autenticado como {{email}}",
+      "title": "Espaco de revisao"
+    },
+    "outputs": {
+      "copy": "Arquivos gerados abrem em uma nova aba do navegador.",
+      "emptyMarkdown": "Nenhum markdown gerado ainda.",
+      "emptyPdf": "Nenhum PDF gerado ainda.",
+      "eyebrow": "Saidas",
+      "markdownTitle": "Markdown ({{count}})",
+      "pdfTitle": "PDF ({{count}})",
+      "refresh": "Atualizar",
+      "title": "Arquivos gerados"
+    },
+    "process": {
+      "copy": "O status do processo vem do backend labs-reviewer.",
+      "createdAt": "Criado",
+      "details": "Detalhes",
+      "empty": "Envie um arquivo markdown para iniciar um processo.",
+      "eyebrow": "Processo",
+      "file": "Arquivo",
+      "loop": "Loop {{value}}",
+      "polling": "Verificando status...",
+      "processId": "ID do processo",
+      "title": "Status do processo",
+      "waiting": "Aguardando o inicio das etapas dos agentes."
+    },
+    "result": {
+      "backHome": "Voltar ao painel",
+      "copy": "Esta pagina de resultado esta pronta para a proxima etapa de implementacao.",
+      "eyebrow": "Resultado da revisao",
+      "missingProcess": "Nenhum ID de processo foi informado para esta pagina de resultado.",
+      "navLabel": "Navegacao da pagina de resultado",
+      "title": "Resultado da revisao"
+    },
+    "status": {
+      "FAILED": "Falhou",
+      "IN_PROGRESS": "Em andamento",
+      "SUCCEEDED": "Concluido"
+    },
+    "upload": {
+      "copy": "Envie um arquivo markdown UTF-8 para iniciar uma revisao.",
+      "emptySelection": "Nenhum arquivo markdown selecionado.",
+      "eyebrow": "Upload",
+      "fileLabel": "Arquivo markdown",
+      "submit": "Enviar para revisao",
+      "title": "Enviar markdown"
+    },
+    "validation": {
+      "markdownFile": "Selecione um arquivo .md.",
+      "requiredFile": "Selecione um arquivo markdown antes de enviar."
+    }
+  },
   "providers": {
     "divider": "ou continue com",
     "github": "Continuar com GitHub",

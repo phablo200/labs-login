@@ -4,13 +4,31 @@ export type AuthApiConfig = {
   applicationId: string
 }
 
-export class AuthConfigError extends Error {
+export type LabsReviewerApiConfig = {
+  baseUrl: string
+}
+
+export class RuntimeConfigError extends Error {
   missingKeys: string[]
 
-  constructor(missingKeys: string[]) {
-    super(`Missing auth API configuration: ${missingKeys.join(', ')}`)
-    this.name = 'AuthConfigError'
+  constructor(serviceName: string, missingKeys: string[]) {
+    super(`Missing ${serviceName} configuration: ${missingKeys.join(', ')}`)
+    this.name = 'RuntimeConfigError'
     this.missingKeys = missingKeys
+  }
+}
+
+export class AuthConfigError extends RuntimeConfigError {
+  constructor(missingKeys: string[]) {
+    super('auth API', missingKeys)
+    this.name = 'AuthConfigError'
+  }
+}
+
+export class LabsReviewerConfigError extends RuntimeConfigError {
+  constructor(missingKeys: string[]) {
+    super('labs reviewer API', missingKeys)
+    this.name = 'LabsReviewerConfigError'
   }
 }
 
@@ -47,6 +65,25 @@ export function getAuthApiConfig(): AuthApiConfig {
   return {
     applicationId,
     apiKey,
+    baseUrl,
+  }
+}
+
+export function getLabsReviewerApiConfig(): LabsReviewerApiConfig {
+  const baseUrl = normalizeBaseUrl(
+    import.meta.env.VITE_LABS_REVIEWER_API_BASE_URL ?? '',
+  )
+  const missingKeys: string[] = []
+
+  if (!baseUrl) {
+    missingKeys.push('VITE_LABS_REVIEWER_API_BASE_URL')
+  }
+
+  if (missingKeys.length > 0) {
+    throw new LabsReviewerConfigError(missingKeys)
+  }
+
+  return {
     baseUrl,
   }
 }

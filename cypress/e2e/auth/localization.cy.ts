@@ -1,9 +1,17 @@
-import { authSuccessResponse, tokenValidResponse } from '../../support/authResponses'
+import {
+  authenticatedUserResponse,
+  authSuccessResponse,
+} from '../../support/authResponses'
 
 const authApiBaseUrl = Cypress.env('authApiBaseUrl') as string
+const labsReviewerApiBaseUrl = Cypress.env('labsReviewerApiBaseUrl') as string
 
 function authUrl(endpoint: string): string {
   return `${authApiBaseUrl}${endpoint}`
+}
+
+function labsReviewerUrl(endpoint: string): string {
+  return `${labsReviewerApiBaseUrl}${endpoint}`
 }
 
 describe('Localization', () => {
@@ -32,10 +40,18 @@ describe('Localization', () => {
       cy.assertAuthHeaders(request, 'en')
     })
 
-    cy.intercept('GET', authUrl('/auth/validate-token'), {
-      body: tokenValidResponse(),
+    cy.intercept('GET', labsReviewerUrl('/me'), {
+      body: authenticatedUserResponse(),
       statusCode: 200,
-    }).as('validateToken')
+    }).as('getMe')
+    cy.intercept('GET', labsReviewerUrl('/outputs/makdown'), {
+      body: { count: 0, items: [] },
+      statusCode: 200,
+    }).as('listMarkdownOutputs')
+    cy.intercept('GET', labsReviewerUrl('/outputs/pdf'), {
+      body: { count: 0, items: [] },
+      statusCode: 200,
+    }).as('listPdfOutputs')
     cy.intercept('POST', authUrl('/auth/signin'), {
       body: authSuccessResponse(),
       statusCode: 200,
@@ -52,7 +68,10 @@ describe('Localization', () => {
     cy.wait('@signInPortuguese').then(({ request }) => {
       cy.assertAuthHeaders(request, 'pt')
     })
-    cy.wait('@validateToken')
-    cy.contains('Você está autenticado.').should('be.visible')
+    cy.wait('@getMe').then(({ request }) => {
+      cy.assertLabsReviewerHeaders(request, 'pt')
+      expect(request.headers.authorization).to.equal('Bearer e2e-session-token')
+    })
+    cy.contains('Espaço de revisão').should('be.visible')
   })
 })

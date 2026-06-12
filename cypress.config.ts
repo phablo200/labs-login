@@ -5,6 +5,7 @@ export default defineConfig({
     baseUrl: 'http://127.0.0.1:5173',
     env: {
       authApiBaseUrl: 'http://127.0.0.1:3001/api',
+      labsReviewerApiBaseUrl: 'http://127.0.0.1:3015',
     },
     retries: {
       openMode: 0,

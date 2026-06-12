@@ -4,6 +4,7 @@ import NotFoundPage from '../pages/NotFoundPage/NotFoundPage'
 import OAuthCallbackPage from '../pages/OAuthCallbackPage/OAuthCallbackPage'
 import PasswordRecoveryPage from '../pages/PasswordRecoveryPage/PasswordRecoveryPage'
 import ResetPasswordPage from '../pages/ResetPasswordPage/ResetPasswordPage'
+import ReviewResultPage from '../pages/ReviewResultPage/ReviewResultPage'
 import SignInPage from '../pages/SignInPage/SignInPage'
 import SignUpPage from '../pages/SignUpPage/SignUpPage'
 import ProtectedRoute from './ProtectedRoute'
@@ -32,6 +33,14 @@ function AppRouter() {
         element={
           <ProtectedRoute>
             <HomePage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path={AppRoute.ReviewResult}
+        element={
+          <ProtectedRoute>
+            <ReviewResultPage />
           </ProtectedRoute>
         }
       />

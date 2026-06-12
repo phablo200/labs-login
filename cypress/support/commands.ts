@@ -2,16 +2,23 @@ import { providerStatusResponse } from './authResponses'
 
 const sessionCookieName = 'labs_login_session'
 const authApiBaseUrl = Cypress.env('authApiBaseUrl') as string
+const labsReviewerApiBaseUrl = Cypress.env('labsReviewerApiBaseUrl') as string
 
 function authUrl(endpoint: string): string {
   return `${authApiBaseUrl}${endpoint}`
 }
 
+function labsReviewerUrl(endpoint: string): string {
+  return `${labsReviewerApiBaseUrl}${endpoint}`
+}
+
 Cypress.Commands.add('authUrl', authUrl)
+Cypress.Commands.add('labsReviewerUrl', labsReviewerUrl)
 
 Cypress.Commands.add('clearAuthState', () => {
   cy.clearCookie(sessionCookieName)
   cy.clearLocalStorage('labs-login.language')
+  cy.clearLocalStorage('labs-login.authenticated-user')
 })
 
 Cypress.Commands.add('setSessionCookie', (token = 'e2e-session-token') => {
@@ -25,6 +32,13 @@ Cypress.Commands.add('assertAuthHeaders', (request, language = 'en') => {
     'x-application-id': 'e2e-application',
   })
   expect(request.headers['content-type']).to.contain('application/json')
+})
+
+Cypress.Commands.add('assertLabsReviewerHeaders', (request, language = 'en') => {
+  expect(request.headers['accept-language']).to.equal(language)
+  expect(request.headers.authorization).to.match(/^Bearer /)
+  expect(request.headers).not.to.have.property('x-api-key')
+  expect(request.headers).not.to.have.property('x-application-id')
 })
 
 Cypress.Commands.add('stubProviderStatus', (providers = []) => {

@@ -573,6 +573,368 @@
   outline-offset: 3px;
 }
 
+.labs-reviewer-page {
+  box-sizing: border-box;
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  padding: 32px 24px 48px;
+  text-align: left;
+}
+
+.labs-reviewer-page__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.labs-reviewer-page__header h1 {
+  margin-bottom: 10px;
+}
+
+.labs-reviewer-page__user {
+  margin-top: 12px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.labs-reviewer-page__actions {
+  flex: 0 0 auto;
+}
+
+.labs-reviewer-page__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
+  gap: 20px;
+  align-items: start;
+}
+
+.labs-reviewer-page__main {
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+}
+
+.labs-reviewer-panel {
+  box-sizing: border-box;
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  background: var(--surface-panel);
+  box-shadow: 0 16px 34px color-mix(in srgb, var(--text-primary) 8%, transparent);
+}
+
+.labs-reviewer-panel__header {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.labs-reviewer-panel__header--inline {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.labs-reviewer-panel__header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.labs-reviewer-panel__header p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.labs-reviewer-panel__eyebrow {
+  color: var(--brand-primary) !important;
+  font-size: 13px !important;
+  font-weight: 700;
+  line-height: 1.3 !important;
+}
+
+.labs-reviewer-upload {
+  display: grid;
+  gap: 10px;
+}
+
+.labs-reviewer-upload__label {
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.labs-reviewer-upload__input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border-default);
+  border-radius: 6px;
+  background: var(--surface-input);
+  color: var(--text-primary);
+  font: inherit;
+}
+
+.labs-reviewer-upload__input:focus-visible,
+.labs-reviewer-button:focus-visible,
+.labs-reviewer-output-list a:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 3px;
+}
+
+.labs-reviewer-upload__help,
+.labs-reviewer-empty,
+.labs-reviewer-loading {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.labs-reviewer-upload__error,
+.labs-reviewer-empty--error {
+  color: var(--feedback-error);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.labs-reviewer-button {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 14px;
+  border: 1px solid var(--border-default);
+  border-radius: 6px;
+  background: var(--surface-input);
+  color: var(--brand-primary);
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.labs-reviewer-button--primary {
+  min-height: 46px;
+  border-color: var(--brand-primary);
+  background: var(--brand-primary);
+  color: #ffffff;
+}
+
+.labs-reviewer-button--secondary:hover,
+.labs-reviewer-button--small:hover {
+  border-color: var(--brand-primary);
+  background: var(--brand-surface);
+}
+
+.labs-reviewer-button--small {
+  min-height: 32px;
+  padding: 0 10px;
+  font-size: 13px;
+}
+
+.labs-reviewer-button:disabled {
+  border-color: var(--border-strong);
+  background: var(--border-default);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+.labs-reviewer-button__icon,
+.labs-reviewer-loading__icon,
+.labs-reviewer-process__icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+.labs-reviewer-process {
+  display: grid;
+  gap: 18px;
+}
+
+.labs-reviewer-process__summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.labs-reviewer-process__polling,
+.labs-reviewer-loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.labs-reviewer-process__metadata {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
+.labs-reviewer-process__metadata div {
+  min-width: 0;
+}
+
+.labs-reviewer-process__metadata dt {
+  margin-bottom: 4px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.labs-reviewer-process__metadata dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.labs-reviewer-status {
+  display: inline-flex;
+  min-height: 26px;
+  align-items: center;
+  padding: 0 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.labs-reviewer-status--in_progress {
+  background: color-mix(in srgb, var(--feedback-info) 14%, transparent);
+  color: var(--feedback-info);
+}
+
+.labs-reviewer-status--succeeded {
+  background: color-mix(in srgb, var(--feedback-success) 14%, transparent);
+  color: var(--feedback-success);
+}
+
+.labs-reviewer-status--failed {
+  background: color-mix(in srgb, var(--feedback-error) 14%, transparent);
+  color: var(--feedback-error);
+}
+
+.labs-reviewer-agent-list,
+.labs-reviewer-agent__children,
+.labs-reviewer-output-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.labs-reviewer-agent__children {
+  margin-top: 10px;
+}
+
+.labs-reviewer-agent__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px;
+  padding-left: calc(10px + (var(--agent-depth, 0) * 18px));
+  border: 1px solid var(--border-default);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--border-default) 12%, var(--surface-panel));
+}
+
+.labs-reviewer-agent__main,
+.labs-reviewer-agent__meta {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 8px;
+}
+
+.labs-reviewer-agent__meta {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.labs-reviewer-agent__name {
+  overflow-wrap: anywhere;
+  font-weight: 700;
+}
+
+.labs-reviewer-agent-detail {
+  position: sticky;
+  top: 24px;
+}
+
+.labs-reviewer-agent-detail__content {
+  display: grid;
+  gap: 14px;
+}
+
+.labs-reviewer-agent-detail__metadata {
+  display: flex;
+}
+
+.labs-reviewer-agent-detail__result {
+  box-sizing: border-box;
+  max-height: 420px;
+  overflow: auto;
+  margin: 0;
+  padding: 14px;
+  border: 1px solid var(--border-default);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--border-default) 14%, var(--surface-input));
+  color: var(--text-primary);
+  font: inherit;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.labs-reviewer-outputs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.labs-reviewer-outputs__section {
+  min-width: 0;
+}
+
+.labs-reviewer-outputs__section h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+
+.labs-reviewer-output-list__item a {
+  display: block;
+  overflow-wrap: anywhere;
+  color: var(--brand-primary);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.labs-reviewer-output-list__item a:hover {
+  color: var(--brand-primary-hover);
+  text-decoration: underline;
+}
+
+.labs-reviewer-result {
+  width: min(100%, 640px);
+}
+
 @media (min-width: 1024px) {
   .auth-layout {
     grid-template-columns: minmax(0, 58fr) minmax(420px, 42fr);
@@ -682,5 +1044,34 @@
     min-width: 96px;
     min-height: 36px;
     font-size: 14px;
+  }
+
+  .labs-reviewer-page {
+    padding: 24px 16px 40px;
+  }
+
+  .labs-reviewer-page__header,
+  .labs-reviewer-panel__header--inline,
+  .labs-reviewer-agent__row {
+    grid-template-columns: 1fr;
+  }
+
+  .labs-reviewer-page__header,
+  .labs-reviewer-panel__header--inline {
+    display: grid;
+  }
+
+  .labs-reviewer-page__grid,
+  .labs-reviewer-process__metadata,
+  .labs-reviewer-outputs {
+    grid-template-columns: 1fr;
+  }
+
+  .labs-reviewer-agent-detail {
+    position: static;
+  }
+
+  .labs-reviewer-agent__meta {
+    justify-content: flex-start;
   }
 }
