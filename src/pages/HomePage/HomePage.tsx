@@ -1,9 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import SignOut from '../../components/ui/Icons/SignOut'
-import AgentProcessDetailPanel from '../../features/labs-reviewer/components/AgentProcessDetailPanel/AgentProcessDetailPanel'
-import ProcessStatusTree from '../../features/labs-reviewer/components/ProcessStatusTree/ProcessStatusTree'
-import ReviewOutputsPanel from '../../features/labs-reviewer/components/ReviewOutputsPanel/ReviewOutputsPanel'
 import ReviewUploadPanel from '../../features/labs-reviewer/components/ReviewUploadPanel/ReviewUploadPanel'
 import { useLabsReviewerDashboard } from '../../features/labs-reviewer/hooks/useLabsReviewerDashboard'
 import {
@@ -29,7 +26,6 @@ function HomePage() {
     <main className="labs-reviewer-page" aria-labelledby="home-title">
       <div className="labs-reviewer-page__header">
         <div>
-          <p className="route-eyebrow">{t('labsReviewer.dashboard.eyebrow')}</p>
           <h1 id="home-title">{t('labsReviewer.dashboard.title')}</h1>
           <p className="route-copy">{t('labsReviewer.dashboard.copy')}</p>
           {storedUser ? (
@@ -62,26 +58,7 @@ function HomePage() {
             onUpload={dashboard.uploadSelectedFile}
             selectedFileName={dashboard.state.selectedFileName}
           />
-          <ProcessStatusTree
-            isPolling={dashboard.isPollingProcess}
-            onOpenAgentDetail={dashboard.loadAgentDetail}
-            processStatus={dashboard.state.processStatus}
-            processStatusError={dashboard.state.processStatusError}
-          />
-          <ReviewOutputsPanel
-            isRefreshing={dashboard.isRefreshingOutputs}
-            markdownOutputs={dashboard.state.markdownOutputs}
-            onRefresh={dashboard.refreshOutputs}
-            pdfOutputs={dashboard.state.pdfOutputs}
-          />
         </div>
-
-        <AgentProcessDetailPanel
-          agentDetail={dashboard.state.agentDetail}
-          agentDetailError={dashboard.state.agentDetailError}
-          isLoading={dashboard.isLoadingAgentDetail}
-          onClose={dashboard.clearAgentDetail}
-        />
       </div>
     </main>
   )

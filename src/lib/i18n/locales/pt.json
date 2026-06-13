@@ -112,11 +112,25 @@
       "waiting": "Aguardando o inicio das etapas dos agentes."
     },
     "result": {
+      "agentsEyebrow": "Status dos agentes",
+      "agentsTitle": "Agentes atuais",
       "backHome": "Voltar ao painel",
-      "copy": "Esta pagina de resultado esta pronta para a proxima etapa de implementacao.",
+      "copy": "Acompanhe o status do processo e inspecione os resultados dos agentes concluidos.",
       "eyebrow": "Resultado da revisao",
+      "loadingDescription": "O processo de revisao esta carregando. O status dos agentes aparecera aqui assim que o backend informar progresso.",
+      "loadingStatus": "Carregando",
       "missingProcess": "Nenhum ID de processo foi informado para esta pagina de resultado.",
       "navLabel": "Navegacao da pagina de resultado",
+      "pendingDate": "Aguardando data do backend",
+      "pendingFile": "Aguardando metadados do arquivo",
+      "selectedEmpty": "Selecione um agente concluido para ver o resultado aqui.",
+      "selectedTitle": "Resultado do agente selecionado",
+      "statusDescription": {
+        "FAILED": "Este agente falhou. O resultado ainda nao esta disponivel.",
+        "IN_PROGRESS": "Este agente ainda esta processando. O resultado sera liberado quando for concluido.",
+        "SUCCEEDED": "Este agente foi concluido com sucesso. Selecione para ver o resultado."
+      },
+      "summaryLabel": "Resumo do processo",
       "title": "Resultado da revisao"
     },
     "status": {

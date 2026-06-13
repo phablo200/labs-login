@@ -86,7 +86,7 @@
       "copy": "Upload markdown notes, follow processing status, and open generated outputs.",
       "eyebrow": "Labs Reviewer",
       "signedInAs": "Signed in as {{email}}",
-      "title": "Review workspace"
+      "title": "Labs Review workspace"
     },
     "outputs": {
       "copy": "Generated files open in a new browser tab.",
@@ -112,11 +112,25 @@
       "waiting": "Waiting for agent steps to start."
     },
     "result": {
+      "agentsEyebrow": "Agent status",
+      "agentsTitle": "Current agents",
       "backHome": "Back to dashboard",
-      "copy": "This result page is ready for the next implementation step.",
+      "copy": "Follow the process status and inspect successful agent results as they become available.",
       "eyebrow": "Review result",
+      "loadingDescription": "The review process is loading. Agent status will appear here as soon as the backend reports progress.",
+      "loadingStatus": "Loading",
       "missingProcess": "No process id was provided for this result page.",
       "navLabel": "Result page navigation",
+      "pendingDate": "Waiting for backend timestamp",
+      "pendingFile": "Waiting for backend file metadata",
+      "selectedEmpty": "Select a successful agent to view its result here.",
+      "selectedTitle": "Selected agent result",
+      "statusDescription": {
+        "FAILED": "This agent failed. Its result is not available yet.",
+        "IN_PROGRESS": "This agent is still processing. The result will unlock after it succeeds.",
+        "SUCCEEDED": "This agent finished successfully. Select it to view its result."
+      },
+      "summaryLabel": "Process summary",
       "title": "Review result"
     },
     "status": {
