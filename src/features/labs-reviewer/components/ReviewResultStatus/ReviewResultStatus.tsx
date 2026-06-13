@@ -1,5 +1,8 @@
 import type { CSSProperties } from 'react'
 import { useTranslation } from 'react-i18next'
+import AgentFailedIcon from '../../../../components/ui/Icons/AgentFailedIcon'
+import AgentInProgressIcon from '../../../../components/ui/Icons/AgentInProgressIcon'
+import AngentSucceedIcon from '../../../../components/ui/Icons/AngentSucceedIcon'
 import LoadingIcon from '../../../../components/ui/Icons/LoadingIcon'
 import type { ProcessStatusState } from '../../types'
 import type {
@@ -30,6 +33,18 @@ function getStatusDescriptionKey(status: ProcessStatusState): string {
   return 'labsReviewer.result.statusDescription.IN_PROGRESS'
 }
 
+function renderStatusIcon(status: ProcessStatusState) {
+  if (status === 'FAILED') {
+    return <AgentFailedIcon />
+  }
+
+  if (status === 'SUCCEEDED') {
+    return <AngentSucceedIcon />
+  }
+
+  return <AgentInProgressIcon />
+}
+
 function ReviewResultAgentCard({
   agentProcess,
   depth,
@@ -41,6 +56,7 @@ function ReviewResultAgentCard({
   const style = {
     '--agent-depth': depth,
   } as CSSProperties
+  const statusLabel = t(`labsReviewer.status.${agentProcess.status}`)
 
   return (
     <li className="labs-reviewer-result-agent">
@@ -51,21 +67,28 @@ function ReviewResultAgentCard({
         style={style}
         type="button"
       >
-        <span className="labs-reviewer-result-agent__main">
-          <span className="labs-reviewer-result-agent__name">
-            {agentProcess.name}
-          </span>
-          <span className="labs-reviewer-result-agent__description">
-            {t(getStatusDescriptionKey(agentProcess.status))}
-          </span>
+        <span
+          className={`labs-reviewer-result-agent__status-icon labs-reviewer-result-agent__status-icon--${agentProcess.status.toLowerCase()}`}
+        >
+          {renderStatusIcon(agentProcess.status)}
         </span>
-        <span className="labs-reviewer-result-agent__meta">
-          <span
-            className={`labs-reviewer-status labs-reviewer-status--${agentProcess.status.toLowerCase()}`}
-          >
-            {t(`labsReviewer.status.${agentProcess.status}`)}
+
+        <span className="labs-reviewer-result-agent__content">
+          <span className="labs-reviewer-result-agent__main">
+            <span className="labs-reviewer-result-agent__name">
+              {agentProcess.name}
+            </span>
+            <span className="labs-reviewer-result-agent__description">
+              {t(getStatusDescriptionKey(agentProcess.status))}
+            </span>
           </span>
-          {finishedAt ? <span>{finishedAt}</span> : null}
+
+          <span className="labs-reviewer-result-agent__meta">
+            <span className="labs-reviewer-result-agent__status-label">
+              {statusLabel}
+            </span>
+            {finishedAt ? <span>{finishedAt}</span> : null}
+          </span>
         </span>
       </button>
 

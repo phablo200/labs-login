@@ -141,4 +141,84 @@ describe('Labs Reviewer dashboard', () => {
     )
     cy.contains('a', 'Back to dashboard').should('have.attr', 'href', '/home')
   })
+
+  it('renders agent process statuses and opens successful agent results', () => {
+    stubAuthenticatedDashboard()
+    cy.intercept('GET', labsReviewerUrl('/labs/processes/process-123/status'), {
+      body: {
+        created_at: '2026-06-13T12:00:00.000Z',
+        data: [
+          {
+            children: [],
+            finished_at: '2026-06-13T12:03:00.000Z',
+            id: 'agent-succeeded',
+            loop_from: null,
+            loop_to: null,
+            name: 'Extract outline',
+            status: 'SUCCEEDED',
+          },
+          {
+            children: [],
+            finished_at: null,
+            id: 'agent-in-progress',
+            loop_from: null,
+            loop_to: null,
+            name: 'Score criteria',
+            status: 'IN_PROGRESS',
+          },
+          {
+            children: [],
+            finished_at: '2026-06-13T12:02:00.000Z',
+            id: 'agent-failed',
+            loop_from: null,
+            loop_to: null,
+            name: 'Generate summary',
+            status: 'FAILED',
+          },
+        ],
+        file: 'notes.md',
+        id: 'process-123',
+        status: 'SUCCEEDED',
+        user_id: 'user-e2e',
+      },
+      statusCode: 200,
+    }).as('getProcessStatus')
+    cy.intercept('GET', labsReviewerUrl('/labs/agent-process/agent-succeeded'), {
+      body: {
+        children: [],
+        finished_at: '2026-06-13T12:03:00.000Z',
+        id: 'agent-succeeded',
+        loop_from: null,
+        loop_to: null,
+        name: 'Extract outline',
+        result: 'Outline result body',
+        status: 'SUCCEEDED',
+      },
+      statusCode: 200,
+    }).as('getAgentProcess')
+
+    cy.visit('/review-result?process_id=process-123')
+    cy.wait('@getMe')
+    cy.wait('@getProcessStatus').then(({ request }) => {
+      cy.assertLabsReviewerHeaders(request)
+    })
+
+    cy.contains('h1', 'Review result').should('be.visible')
+    cy.contains('Extract outline').should('be.visible')
+    cy.contains('Succeeded').should('be.visible')
+    cy.contains('Score criteria').should('be.visible')
+    cy.contains('In progress').should('be.visible')
+    cy.contains('Generate summary').should('be.visible')
+    cy.contains('Failed').should('be.visible')
+
+    cy.contains('button', 'Extract outline').should('not.be.disabled').click()
+    cy.contains('button', 'Score criteria').should('be.disabled')
+    cy.contains('button', 'Generate summary').should('be.disabled')
+
+    cy.wait('@getAgentProcess').then(({ request }) => {
+      cy.assertLabsReviewerHeaders(request)
+    })
+    cy.contains('h2', 'Extract outline').should('be.visible')
+    cy.contains('Outline result body').should('be.visible')
+  })
 })
