@@ -112,7 +112,7 @@
       "waiting": "Aguardando o inicio das etapas dos agentes."
     },
     "result": {
-      "agentsEyebrow": "Status dos agentes",
+      "agentsEyebrow": "Os agentes estão trabalhando...",
       "agentsTitle": "Agentes atuais",
       "backHome": "Voltar ao painel",
       "copy": "Acompanhe o status do processo e inspecione os resultados dos agentes concluidos.",

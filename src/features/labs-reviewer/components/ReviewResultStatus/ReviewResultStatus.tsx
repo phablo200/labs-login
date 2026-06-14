@@ -1,8 +1,8 @@
-import type { CSSProperties } from 'react'
 import { useTranslation } from 'react-i18next'
 import AgentFailedIcon from '../../../../components/ui/Icons/AgentFailedIcon'
 import AgentInProgressIcon from '../../../../components/ui/Icons/AgentInProgressIcon'
-import AngentSucceedIcon from '../../../../components/ui/Icons/AngentSucceedIcon'
+import AgentSucceedIcon from '../../../../components/ui/Icons/AgentSucceedIcon'
+import ClipboardButton from '../../../../components/ui/ClipboardButton/ClipboardButton'
 import LoadingIcon from '../../../../components/ui/Icons/LoadingIcon'
 import type { ProcessStatusState } from '../../types'
 import type {
@@ -33,13 +33,25 @@ function getStatusDescriptionKey(status: ProcessStatusState): string {
   return 'labsReviewer.result.statusDescription.IN_PROGRESS'
 }
 
+function getStatusTooltip(status: ProcessStatusState): string {
+  if (status === 'FAILED') {
+    return 'Failed'
+  }
+
+  if (status === 'SUCCEEDED') {
+    return 'Succeeded'
+  }
+
+  return 'In Progress'
+}
+
 function renderStatusIcon(status: ProcessStatusState) {
   if (status === 'FAILED') {
     return <AgentFailedIcon />
   }
 
   if (status === 'SUCCEEDED') {
-    return <AngentSucceedIcon />
+    return <AgentSucceedIcon />
   }
 
   return <AgentInProgressIcon />
@@ -53,10 +65,6 @@ function ReviewResultAgentCard({
   const { t } = useTranslation()
   const finishedAt = formatDateTime(agentProcess.finished_at)
   const canOpenResult = agentProcess.status === 'SUCCEEDED'
-  const style = {
-    '--agent-depth': depth,
-  } as CSSProperties
-  const statusLabel = t(`labsReviewer.status.${agentProcess.status}`)
 
   return (
     <li className="labs-reviewer-result-agent">
@@ -64,11 +72,12 @@ function ReviewResultAgentCard({
         className="labs-reviewer-result-agent__button"
         disabled={!canOpenResult}
         onClick={() => onOpenAgentDetail(agentProcess.id)}
-        style={style}
         type="button"
       >
         <span
           className={`labs-reviewer-result-agent__status-icon labs-reviewer-result-agent__status-icon--${agentProcess.status.toLowerCase()}`}
+          data-tooltip={getStatusTooltip(agentProcess.status)}
+          title={getStatusTooltip(agentProcess.status)}
         >
           {renderStatusIcon(agentProcess.status)}
         </span>
@@ -84,9 +93,6 @@ function ReviewResultAgentCard({
           </span>
 
           <span className="labs-reviewer-result-agent__meta">
-            <span className="labs-reviewer-result-agent__status-label">
-              {statusLabel}
-            </span>
             {finishedAt ? <span>{finishedAt}</span> : null}
           </span>
         </span>
@@ -168,12 +174,21 @@ function ReviewResultStatus({
         <div className="labs-reviewer-result-status__detail">
           <div className="labs-reviewer-result-detail">
             <div className="labs-reviewer-result-detail__header">
-              <p className="labs-reviewer-panel__eyebrow">
-                {t('labsReviewer.agentDetail.eyebrow')}
-              </p>
-              <h2>
-                {agentDetail?.name ?? t('labsReviewer.result.selectedTitle')}
-              </h2>
+              <div className="labs-reviewer-result-detail__heading">
+                <p className="labs-reviewer-panel__eyebrow">
+                  {t('labsReviewer.agentDetail.eyebrow')}
+                </p>
+                <h2>
+                  {agentDetail?.name ?? t('labsReviewer.result.selectedTitle')}
+                </h2>
+              </div>
+
+              {agentDetail?.result ? (
+                <ClipboardButton
+                  className="labs-reviewer-result-detail__copy"
+                  text={agentDetail.result}
+                />
+              ) : null}
             </div>
 
             {isLoadingAgentDetail ? (
@@ -211,7 +226,6 @@ function ReviewResultStatus({
               </p>
             ) : null}
           </div>
-
           {processStatus?.data.length ? (
             <ul className="labs-reviewer-result-agent-list">
               {processStatus.data.map((agentProcess) => (

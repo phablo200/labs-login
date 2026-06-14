@@ -1,0 +1,76 @@
+.clipboard-button {
+  position: relative;
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--surface-panel) 88%, var(--brand-surface));
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition:
+    border-color 140ms ease,
+    background 140ms ease,
+    color 140ms ease,
+    transform 140ms ease;
+}
+
+.clipboard-button:hover {
+  border-color: var(--brand-primary);
+  background: var(--brand-surface);
+  color: var(--brand-primary);
+}
+
+.clipboard-button:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 3px;
+}
+
+.clipboard-button:active {
+  transform: translateY(1px);
+}
+
+.clipboard-button--done {
+  border-color: color-mix(in srgb, var(--feedback-success) 42%, var(--border-default));
+  background: color-mix(in srgb, var(--feedback-success) 14%, var(--surface-panel));
+  color: var(--feedback-success);
+}
+
+.clipboard-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+.clipboard-button__icon {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 auto;
+}
+
+.clipboard-button::after {
+  position: absolute;
+  z-index: 3;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: var(--text-primary);
+  color: var(--surface-panel);
+  content: attr(data-tooltip);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(2px);
+  transition: opacity 140ms ease, transform 140ms ease;
+  white-space: nowrap;
+}
+
+.clipboard-button:hover::after,
+.clipboard-button:focus-visible::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}

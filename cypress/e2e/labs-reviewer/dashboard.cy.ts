@@ -198,6 +198,14 @@ describe('Labs Reviewer dashboard', () => {
     }).as('getAgentProcess')
 
     cy.visit('/review-result?process_id=process-123')
+    cy.window().then((win) => {
+      const writeText = cy.stub().as('writeText').resolves()
+
+      Object.defineProperty(win.navigator, 'clipboard', {
+        configurable: true,
+        value: { writeText },
+      })
+    })
     cy.wait('@getMe')
     cy.wait('@getProcessStatus').then(({ request }) => {
       cy.assertLabsReviewerHeaders(request)
@@ -205,11 +213,11 @@ describe('Labs Reviewer dashboard', () => {
 
     cy.contains('h1', 'Review result').should('be.visible')
     cy.contains('Extract outline').should('be.visible')
-    cy.contains('Succeeded').should('be.visible')
+    cy.get('[title="Succeeded"]').should('be.visible')
     cy.contains('Score criteria').should('be.visible')
-    cy.contains('In progress').should('be.visible')
+    cy.get('[title="In Progress"]').should('be.visible')
     cy.contains('Generate summary').should('be.visible')
-    cy.contains('Failed').should('be.visible')
+    cy.get('[title="Failed"]').should('be.visible')
 
     cy.contains('button', 'Extract outline').should('not.be.disabled').click()
     cy.contains('button', 'Score criteria').should('be.disabled')
@@ -220,5 +228,8 @@ describe('Labs Reviewer dashboard', () => {
     })
     cy.contains('h2', 'Extract outline').should('be.visible')
     cy.contains('Outline result body').should('be.visible')
+    cy.get('button[aria-label="Copy Result"]').click()
+    cy.get('@writeText').should('have.been.calledWith', 'Outline result body')
+    cy.get('button[aria-label="Done"]').should('be.visible')
   })
 })

@@ -1002,8 +1002,20 @@
 }
 
 .labs-reviewer-result-detail__header {
-  display: grid;
+  display: flex;
   gap: 8px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.labs-reviewer-result-detail__heading {
+  display: grid;
+  min-width: 0;
+  gap: 8px;
+}
+
+.labs-reviewer-result-detail__copy {
+  flex: 0 0 auto;
 }
 
 .labs-reviewer-result-detail__header h2,
@@ -1046,18 +1058,57 @@
 }
 
 .labs-reviewer-result-agent__children {
+  position: relative;
   margin-top: 10px;
+  padding-left: 24px;
+}
+
+.labs-reviewer-result-agent__children::before {
+  position: absolute;
+  top: -8px;
+  bottom: 48px;
+  left: 10px;
+  width: 2px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--brand-primary) 44%, var(--border-default));
+  content: "";
+}
+
+.labs-reviewer-result-agent__children > .labs-reviewer-result-agent {
+  position: relative;
+}
+
+.labs-reviewer-result-agent__children > .labs-reviewer-result-agent::before {
+  position: absolute;
+  top: 48px;
+  left: -14px;
+  width: 14px;
+  height: 2px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--brand-primary) 44%, var(--border-default));
+  content: "";
+}
+
+.labs-reviewer-result-agent__children > .labs-reviewer-result-agent::after {
+  position: absolute;
+  top: 43px;
+  left: -19px;
+  width: 8px;
+  height: 8px;
+  border: 2px solid color-mix(in srgb, var(--brand-primary) 58%, var(--border-default));
+  border-radius: 999px;
+  background: var(--surface-panel);
+  content: "";
 }
 
 .labs-reviewer-result-agent__button {
   display: grid;
   width: 100%;
   min-height: 96px;
-  grid-template-columns: 48px minmax(0, 1fr);
-  gap: 14px;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 2px;
   align-items: start;
   padding: 12px;
-  padding-left: calc(12px + (var(--agent-depth, 0) * 16px));
   border: 1px solid var(--border-default);
   border-radius: 8px;
   background: color-mix(in srgb, var(--border-default) 12%, var(--surface-panel));
@@ -1083,18 +1134,44 @@
 }
 
 .labs-reviewer-result-agent__status-icon {
+  position: relative;
   display: inline-flex;
-  width: 48px;
-  height: 48px;
+  width: 32px;
+  height: 32px;
   align-items: center;
   justify-content: center;
   border-radius: 8px;
   background: color-mix(in srgb, currentColor 10%, var(--surface-panel));
 }
 
+.labs-reviewer-result-agent__status-icon::after {
+  position: absolute;
+  z-index: 2;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: var(--text-primary);
+  color: var(--surface-panel);
+  content: attr(data-tooltip);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(2px);
+  transition: opacity 140ms ease, transform 140ms ease;
+  white-space: nowrap;
+}
+
+.labs-reviewer-result-agent__status-icon:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 .labs-reviewer-result-agent__status-icon svg {
-  width: 42px;
-  height: 42px;
+  width: 28px;
+  height: 28px;
   flex: 0 0 auto;
 }
 
@@ -1113,7 +1190,7 @@
 .labs-reviewer-result-agent__content {
   display: grid;
   min-width: 0;
-  gap: 12px;
+  gap: 8px;
 }
 
 .labs-reviewer-result-agent__main,
@@ -1122,7 +1199,7 @@
   min-width: 0;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 10px;
+  gap: 4px;
 }
 
 .labs-reviewer-result-agent__main {
@@ -1146,6 +1223,7 @@
   align-items: center;
   color: var(--text-muted);
   font-size: 12px;
+  font-weight: 600;
 }
 
 .labs-reviewer-result-agent__status-label {

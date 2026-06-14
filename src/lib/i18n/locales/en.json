@@ -112,7 +112,7 @@
       "waiting": "Waiting for agent steps to start."
     },
     "result": {
-      "agentsEyebrow": "Agent status",
+      "agentsEyebrow": "Agents are working on...",
       "agentsTitle": "Current agents",
       "backHome": "Back to dashboard",
       "copy": "Follow the process status and inspect successful agent results as they become available.",
