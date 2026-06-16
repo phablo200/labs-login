@@ -195,11 +195,23 @@ The desktop brand panel shall use a warm background inspired by the primary refe
 - Brand copy should be short, for example: “Access your workspace securely.”
 - Avoid using skull or novelty imagery directly unless intentionally approved for brand identity.
 
+## Decision 10: Scoped CSS Ownership
+
+Component and page styles shall be scoped to their owning React files, following `.codex/skills/labs-scoped-style/SKILL.md`.
+
+- Create a same-name CSS file beside every styled `.tsx` component or page, for example `AuthFormHeader.tsx` with `AuthFormHeader.css`.
+- Import scoped CSS directly from the owning `.tsx` file.
+- Use unique component-prefixed class names in kebab case, with BEM-like element and modifier suffixes when useful.
+- Keep `src/App.css` for global resets, document-level base styles, theme variables, design tokens, app-shell globals, and unavoidable third-party global overrides.
+- Do not add component, page, form, card, button-group, layout-section, or feature-specific rules to `src/App.css`.
+- When changing a component whose styles still live in `src/App.css`, move those styles into the component's same-name CSS file.
+
 ## Consequences
 
 - The UI can scale from the current small app to additional auth flows without changing visual language.
 - Desktop screens get a recognizable brand moment while mobile remains task-focused.
 - Dark mode and i18n add implementation complexity but prevent later redesign pressure.
+- Scoped CSS keeps component ownership clear and prevents `src/App.css` from becoming the default location for local UI rules.
 - Provider login is visually represented but correctly blocked until backend OAuth support exists.
 
 ## Open Questions
