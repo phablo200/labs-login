@@ -88,6 +88,20 @@
       "signedInAs": "Signed in as {{email}}",
       "title": "Labs Review workspace"
     },
+    "notes": {
+      "attachFile": "Attach note file",
+      "cancelEdit": "Cancel",
+      "edited": "Edited",
+      "editNote": "Edit note",
+      "empty": "No notes yet. Add a note or attach a .md or .txt file.",
+      "fileHelp": "Attach one .md or .txt file up to 10 KiB.",
+      "label": "Process notes",
+      "loading": "Loading notes...",
+      "placeholder": "Ask or add notes for this process",
+      "saveEdit": "Save",
+      "send": "Send note",
+      "submitReview": "Submit"
+    },
     "outputs": {
       "copy": "Generated files open in a new browser tab.",
       "emptyMarkdown": "No markdown outputs yet.",
@@ -109,6 +123,7 @@
       "polling": "Checking status...",
       "processId": "Process ID",
       "title": "Process status",
+      "untitled": "Untitled process",
       "waiting": "Waiting for agent steps to start."
     },
     "result": {
@@ -116,6 +131,7 @@
       "agentsTitle": "Current agents",
       "backHome": "Back to dashboard",
       "copy": "Follow the process status and inspect successful agent results as they become available.",
+      "editProcess": "Edit Notes",
       "eyebrow": "Review result",
       "loadingDescription": "The review process is loading. Agent status will appear here as soon as the backend reports progress.",
       "loadingStatus": "Loading",
@@ -128,7 +144,8 @@
       "statusDescription": {
         "FAILED": "This agent failed. Its result is not available yet.",
         "IN_PROGRESS": "This agent is still processing. The result will unlock after it succeeds.",
-        "SUCCEEDED": "This agent finished successfully. Select it to view its result."
+        "SUCCEEDED": "This agent finished successfully. Select it to view its result.",
+        "WRITTING": "This process is waiting for notes or review submission."
       },
       "summaryLabel": "Process summary",
       "title": "Review result"
@@ -136,7 +153,15 @@
     "status": {
       "FAILED": "Failed",
       "IN_PROGRESS": "In progress",
-      "SUCCEEDED": "Succeeded"
+      "SUCCEEDED": "Succeeded",
+      "WRITTING": "Writing"
+    },
+    "sidebar": {
+      "empty": "No recent processes yet.",
+      "label": "Labs Reviewer processes",
+      "loading": "Loading recent processes...",
+      "newProcess": "New process",
+      "recents": "Recents"
     },
     "upload": {
       "copy": "Send one UTF-8 markdown file to start a review process.",
@@ -147,8 +172,22 @@
       "title": "Submit markdown"
     },
     "validation": {
+      "emptyFile": "Attach a file with note content.",
       "markdownFile": "Select a .md file.",
-      "requiredFile": "Select a markdown file before submitting."
+      "maxFileSize": "Attach a .md or .txt file up to 10 KiB.",
+      "noteFile": "Attach a .md or .txt file.",
+      "requiredFile": "Select a markdown file before submitting.",
+      "requiredNote": "Write a note before sending.",
+      "requiredNotesBeforeSubmit": "Add at least one note before submitting.",
+      "requiredProcess": "Create or select a process before attaching a file."
+    },
+    "workspace": {
+      "copy": "Add notes, attach files, and submit this process when the context is ready.",
+      "emptyCopy": "Create a process to start collecting notes for the agents.",
+      "emptyTitle": "Start a process",
+      "notFoundCopy": "The process in the URL is unavailable. Select another recent process or create a new one.",
+      "notFoundEyebrow": "Process unavailable",
+      "notFoundTitle": "Process not found"
     }
   },
   "providers": {

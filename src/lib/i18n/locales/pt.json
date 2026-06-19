@@ -88,6 +88,20 @@
       "signedInAs": "Autenticado como {{email}}",
       "title": "Espaco de revisao"
     },
+    "notes": {
+      "attachFile": "Anexar arquivo de nota",
+      "cancelEdit": "Cancelar",
+      "edited": "Editado",
+      "editNote": "Editar nota",
+      "empty": "Nenhuma nota ainda. Adicione uma nota ou anexe um arquivo .md ou .txt.",
+      "fileHelp": "Anexe um arquivo .md ou .txt de ate 10 KiB.",
+      "label": "Notas do processo",
+      "loading": "Carregando notas...",
+      "placeholder": "Pergunte ou adicione notas para este processo",
+      "saveEdit": "Salvar",
+      "send": "Enviar nota",
+      "submitReview": "Enviar"
+    },
     "outputs": {
       "copy": "Arquivos gerados abrem em uma nova aba do navegador.",
       "emptyMarkdown": "Nenhum markdown gerado ainda.",
@@ -109,6 +123,7 @@
       "polling": "Verificando status...",
       "processId": "ID do processo",
       "title": "Status do processo",
+      "untitled": "Processo sem titulo",
       "waiting": "Aguardando o inicio das etapas dos agentes."
     },
     "result": {
@@ -116,6 +131,7 @@
       "agentsTitle": "Agentes atuais",
       "backHome": "Voltar ao painel",
       "copy": "Acompanhe o status do processo e inspecione os resultados dos agentes concluidos.",
+      "editProcess": "Editar notas",
       "eyebrow": "Resultado da revisao",
       "loadingDescription": "O processo de revisao esta carregando. O status dos agentes aparecera aqui assim que o backend informar progresso.",
       "loadingStatus": "Carregando",
@@ -128,7 +144,8 @@
       "statusDescription": {
         "FAILED": "Este agente falhou. O resultado ainda nao esta disponivel.",
         "IN_PROGRESS": "Este agente ainda esta processando. O resultado sera liberado quando for concluido.",
-        "SUCCEEDED": "Este agente foi concluido com sucesso. Selecione para ver o resultado."
+        "SUCCEEDED": "Este agente foi concluido com sucesso. Selecione para ver o resultado.",
+        "WRITTING": "Este processo esta aguardando notas ou envio para revisao."
       },
       "summaryLabel": "Resumo do processo",
       "title": "Resultado da revisao"
@@ -136,7 +153,15 @@
     "status": {
       "FAILED": "Falhou",
       "IN_PROGRESS": "Em andamento",
-      "SUCCEEDED": "Concluido"
+      "SUCCEEDED": "Concluido",
+      "WRITTING": "Escrita"
+    },
+    "sidebar": {
+      "empty": "Nenhum processo recente ainda.",
+      "label": "Processos do Labs Reviewer",
+      "loading": "Carregando processos recentes...",
+      "newProcess": "Novo processo",
+      "recents": "Recentes"
     },
     "upload": {
       "copy": "Envie um arquivo markdown UTF-8 para iniciar uma revisao.",
@@ -147,8 +172,22 @@
       "title": "Enviar markdown"
     },
     "validation": {
+      "emptyFile": "Anexe um arquivo com conteudo de nota.",
       "markdownFile": "Selecione um arquivo .md.",
-      "requiredFile": "Selecione um arquivo markdown antes de enviar."
+      "maxFileSize": "Anexe um arquivo .md ou .txt de ate 10 KiB.",
+      "noteFile": "Anexe um arquivo .md ou .txt.",
+      "requiredFile": "Selecione um arquivo markdown antes de enviar.",
+      "requiredNote": "Escreva uma nota antes de enviar.",
+      "requiredNotesBeforeSubmit": "Adicione pelo menos uma nota antes de enviar.",
+      "requiredProcess": "Crie ou selecione um processo antes de anexar um arquivo."
+    },
+    "workspace": {
+      "copy": "Adicione notas, anexe arquivos e envie este processo quando o contexto estiver pronto.",
+      "emptyCopy": "Crie um processo para comecar a coletar notas para os agentes.",
+      "emptyTitle": "Iniciar processo",
+      "notFoundCopy": "O processo na URL esta indisponivel. Selecione outro processo recente ou crie um novo.",
+      "notFoundEyebrow": "Processo indisponivel",
+      "notFoundTitle": "Processo nao encontrado"
     }
   },
   "providers": {

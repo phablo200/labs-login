@@ -5,22 +5,110 @@ import {
 import { getLabsReviewerApiConfig } from '../../lib/config'
 import type {
   AgentProcessStatusDetailResponse,
+  ProcessStatusNoteRequest,
+  ProcessStatusNoteResponse,
   ProcessStatusResponse,
   ReviewOutputsResponse,
-  ReviewUploadResponse,
+  ReviewStartResponse,
+  WritingProcessStatusResponse,
 } from './types'
 
-export function uploadReviewMarkdown(
+export function listProcessStatuses(
   token: string,
+  term?: string,
+): Promise<ProcessStatusResponse[]> {
+  const params = new URLSearchParams()
+
+  if (term?.trim()) {
+    params.set('term', term.trim())
+  }
+
+  const queryString = params.toString()
+
+  return requestLabsReviewerJson<ProcessStatusResponse[]>({
+    bearerToken: token,
+    endpoint: `/labs/processes/${queryString ? `?${queryString}` : ''}`,
+    method: 'GET',
+  })
+}
+
+export function createWritingProcessStatus(
+  token: string,
+): Promise<WritingProcessStatusResponse> {
+  return requestLabsReviewerJson<WritingProcessStatusResponse>({
+    bearerToken: token,
+    endpoint: '/labs/processes/create',
+    method: 'POST',
+  })
+}
+
+export function listProcessNotes(
+  token: string,
+  processStatusId: string,
+): Promise<ProcessStatusNoteResponse[]> {
+  return requestLabsReviewerJson<ProcessStatusNoteResponse[]>({
+    bearerToken: token,
+    endpoint: `/labs/processes/notes/${processStatusId}`,
+    method: 'GET',
+  })
+}
+
+export function createProcessNote(
+  token: string,
+  processStatusId: string,
+  note: string,
+): Promise<ProcessStatusNoteResponse> {
+  const body: ProcessStatusNoteRequest = { note }
+
+  return requestLabsReviewerJson<ProcessStatusNoteResponse>({
+    bearerToken: token,
+    body,
+    endpoint: `/labs/processes/notes/${processStatusId}`,
+    method: 'POST',
+  })
+}
+
+export function updateProcessNote(
+  token: string,
+  processStatusId: string,
+  noteId: string,
+  note: string,
+): Promise<ProcessStatusNoteResponse> {
+  const body: ProcessStatusNoteRequest = { note }
+
+  return requestLabsReviewerJson<ProcessStatusNoteResponse>({
+    bearerToken: token,
+    body,
+    endpoint: `/labs/processes/notes/${processStatusId}?id=${encodeURIComponent(
+      noteId,
+    )}`,
+    method: 'POST',
+  })
+}
+
+export function uploadProcessNoteFile(
+  token: string,
+  processStatusId: string,
   file: File,
-): Promise<ReviewUploadResponse> {
+): Promise<ProcessStatusNoteResponse> {
   const formData = new FormData()
   formData.append('file', file)
 
-  return requestLabsReviewerForm<ReviewUploadResponse>({
+  return requestLabsReviewerForm<ProcessStatusNoteResponse>({
     bearerToken: token,
-    endpoint: '/labs/review',
+    endpoint: `/labs/processes/files-note/${processStatusId}`,
     formData,
+  })
+}
+
+export function startProcessReview(
+  token: string,
+  processStatusId: string,
+): Promise<ReviewStartResponse> {
+  return requestLabsReviewerJson<ReviewStartResponse>({
+    bearerToken: token,
+    endpoint: `/labs/review/${processStatusId}`,
+    method: 'POST',
   })
 }
 

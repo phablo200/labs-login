@@ -44,14 +44,10 @@ describe('Localization', () => {
       body: authenticatedUserResponse(),
       statusCode: 200,
     }).as('getMe')
-    cy.intercept('GET', labsReviewerUrl('/outputs/makdown'), {
-      body: { count: 0, items: [] },
+    cy.intercept('GET', labsReviewerUrl('/labs/processes/'), {
+      body: [],
       statusCode: 200,
-    }).as('listMarkdownOutputs')
-    cy.intercept('GET', labsReviewerUrl('/outputs/pdf'), {
-      body: { count: 0, items: [] },
-      statusCode: 200,
-    }).as('listPdfOutputs')
+    }).as('listProcesses')
     cy.intercept('POST', authUrl('/auth/signin'), {
       body: authSuccessResponse(),
       statusCode: 200,
@@ -72,6 +68,9 @@ describe('Localization', () => {
       cy.assertLabsReviewerHeaders(request, 'pt')
       expect(request.headers.authorization).to.equal('Bearer e2e-session-token')
     })
-    cy.contains('Espaço de revisão').should('be.visible')
+    cy.wait('@listProcesses').then(({ request }) => {
+      cy.assertLabsReviewerHeaders(request, 'pt')
+    })
+    cy.contains('Iniciar processo').should('be.visible')
   })
 })

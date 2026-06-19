@@ -15,6 +15,13 @@ function labsReviewerUrl(endpoint: string): string {
   return `${labsReviewerApiBaseUrl}${endpoint}`
 }
 
+function stubEmptyProcessList() {
+  cy.intercept('GET', labsReviewerUrl('/labs/processes/'), {
+    body: [],
+    statusCode: 200,
+  }).as('listProcesses')
+}
+
 function visitSignIn() {
   cy.stubProviderStatus()
   cy.visit('/sign-in')
@@ -44,14 +51,7 @@ describe('Sign in', () => {
       body: authenticatedUserResponse(),
       statusCode: 200,
     }).as('getMe')
-    cy.intercept('GET', labsReviewerUrl('/outputs/makdown'), {
-      body: { count: 0, items: [] },
-      statusCode: 200,
-    }).as('listMarkdownOutputs')
-    cy.intercept('GET', labsReviewerUrl('/outputs/pdf'), {
-      body: { count: 0, items: [] },
-      statusCode: 200,
-    }).as('listPdfOutputs')
+    stubEmptyProcessList()
     cy.intercept('POST', authUrl('/auth/signin'), {
       body: authSuccessResponse(),
       delay: 250,
@@ -81,7 +81,8 @@ describe('Sign in', () => {
     })
 
     cy.location('pathname').should('eq', '/home')
-    cy.contains('h1', 'Review workspace').should('be.visible')
+    cy.wait('@listProcesses')
+    cy.contains('h1', 'Start a process').should('be.visible')
     cy.getCookie('labs_login_session')
       .its('value')
       .should('eq', 'e2e-session-token')

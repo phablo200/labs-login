@@ -6,6 +6,13 @@ function labsReviewerUrl(endpoint: string): string {
   return `${labsReviewerApiBaseUrl}${endpoint}`
 }
 
+function stubEmptyProcessList() {
+  cy.intercept('GET', labsReviewerUrl('/labs/processes/'), {
+    body: [],
+    statusCode: 200,
+  }).as('listProcesses')
+}
+
 describe('Protected routes and session validation', () => {
   beforeEach(() => {
     cy.clearAuthState()
@@ -24,14 +31,7 @@ describe('Protected routes and session validation', () => {
       body: authenticatedUserResponse(),
       statusCode: 200,
     }).as('getMe')
-    cy.intercept('GET', labsReviewerUrl('/outputs/makdown'), {
-      body: { count: 0, items: [] },
-      statusCode: 200,
-    }).as('listMarkdownOutputs')
-    cy.intercept('GET', labsReviewerUrl('/outputs/pdf'), {
-      body: { count: 0, items: [] },
-      statusCode: 200,
-    }).as('listPdfOutputs')
+    stubEmptyProcessList()
     cy.setSessionCookie('valid-token')
 
     cy.visit('/home')
@@ -41,7 +41,10 @@ describe('Protected routes and session validation', () => {
       cy.assertLabsReviewerHeaders(request)
       expect(request.headers.authorization).to.equal('Bearer valid-token')
     })
-    cy.contains('h1', 'Review workspace').should('be.visible')
+    cy.wait('@listProcesses').then(({ request }) => {
+      cy.assertLabsReviewerHeaders(request)
+    })
+    cy.contains('h1', 'Start a process').should('be.visible')
     cy.location('pathname').should('eq', '/home')
     cy.window()
       .its('localStorage')

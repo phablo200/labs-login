@@ -7,10 +7,10 @@ import type {
 export type ReviewResultStatusProps = {
   agentDetail: AgentProcessStatusDetailResponse | null
   agentDetailError: string | null
+  editProcessHref: string
   isLoadingAgentDetail: boolean
   isPollingProcess: boolean
   onOpenAgentDetail: (agentProcessId: string) => void
-  processId: string
   processStatus: ProcessStatusResponse | null
   processStatusError: string | null
 }

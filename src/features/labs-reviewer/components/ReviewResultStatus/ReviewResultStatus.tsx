@@ -1,14 +1,17 @@
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 import AgentFailedIcon from '../../../../components/ui/Icons/AgentFailedIcon'
 import AgentInProgressIcon from '../../../../components/ui/Icons/AgentInProgressIcon'
 import AgentSucceedIcon from '../../../../components/ui/Icons/AgentSucceedIcon'
 import ClipboardButton from '../../../../components/ui/ClipboardButton/ClipboardButton'
+import EditIcon from '../../../../components/ui/Icons/EditIcon'
 import LoadingIcon from '../../../../components/ui/Icons/LoadingIcon'
 import type { ProcessStatusState } from '../../types'
 import type {
   ReviewResultAgentCardProps,
   ReviewResultStatusProps,
 } from './ReviewResultStatus.types'
+import './ReviewResultStatus.css'
 
 function formatDateTime(value: string | null): string | null {
   if (!value) {
@@ -30,6 +33,10 @@ function getStatusDescriptionKey(status: ProcessStatusState): string {
     return 'labsReviewer.result.statusDescription.SUCCEEDED'
   }
 
+  if (status === 'WRITTING') {
+    return 'labsReviewer.result.statusDescription.WRITTING'
+  }
+
   return 'labsReviewer.result.statusDescription.IN_PROGRESS'
 }
 
@@ -40,6 +47,10 @@ function getStatusTooltip(status: ProcessStatusState): string {
 
   if (status === 'SUCCEEDED') {
     return 'Succeeded'
+  }
+
+  if (status === 'WRITTING') {
+    return 'Writing'
   }
 
   return 'In Progress'
@@ -117,17 +128,14 @@ function ReviewResultAgentCard({
 function ReviewResultStatus({
   agentDetail,
   agentDetailError,
+  editProcessHref,
   isLoadingAgentDetail,
   isPollingProcess,
   onOpenAgentDetail,
-  processId,
   processStatus,
   processStatusError,
 }: ReviewResultStatusProps) {
   const { t } = useTranslation()
-  const createdAt = processStatus
-    ? formatDateTime(processStatus.created_at)
-    : null
 
   return (
     <section
@@ -136,9 +144,19 @@ function ReviewResultStatus({
     >
       <div className="labs-reviewer-result-status__header">
         <div>
-          <h1 id="review-result-status-title">
-            {t('labsReviewer.result.title')}
-          </h1>
+          <div className="labs-reviewer-result-status__title-row">
+            <h1 id="review-result-status-title">
+              {t('labsReviewer.result.title')}
+            </h1>
+            <Link
+              aria-label={t('labsReviewer.result.editProcess')}
+              className="labs-reviewer-result-status__edit"
+              title={t('labsReviewer.result.editProcess')}
+              to={editProcessHref}
+            >
+              <EditIcon className="labs-reviewer-result-status__edit-icon" />
+            </Link>
+          </div>
           <p className="route-copy">{t('labsReviewer.result.copy')}</p>
         </div>
         <span
@@ -151,26 +169,6 @@ function ReviewResultStatus({
       </div>
 
       <div className="labs-reviewer-result-status__grid">
-        <aside
-          className="labs-reviewer-result-status__summary"
-          aria-label={t('labsReviewer.result.summaryLabel')}
-        >
-          <dl className="labs-reviewer-result-summary">
-            <div>
-              <dt>{t('labsReviewer.process.processId')}</dt>
-              <dd>{processStatus?.id ?? processId}</dd>
-            </div>
-            <div>
-              <dt>{t('labsReviewer.process.file')}</dt>
-              <dd>{processStatus?.file ?? t('labsReviewer.result.pendingFile')}</dd>
-            </div>
-            <div>
-              <dt>{t('labsReviewer.process.createdAt')}</dt>
-              <dd>{createdAt ?? t('labsReviewer.result.pendingDate')}</dd>
-            </div>
-          </dl>
-        </aside>
-
         <div className="labs-reviewer-result-status__detail">
           <div className="labs-reviewer-result-detail">
             <div className="labs-reviewer-result-detail__header">

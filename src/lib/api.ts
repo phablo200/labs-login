@@ -30,7 +30,8 @@ export type RequestLabsReviewerFormOptions = {
 
 export type RequestLabsReviewerJsonOptions = {
   endpoint: string
-  method: Extract<HttpMethod, 'GET'>
+  method: Extract<HttpMethod, 'GET' | 'POST'>
+  body?: unknown
   bearerToken: string
 }
 
@@ -225,6 +226,7 @@ async function handleLabsReviewerResponse<TResponse>(
 
 export async function requestLabsReviewerJson<TResponse>({
   bearerToken,
+  body,
   endpoint,
   method,
 }: RequestLabsReviewerJsonOptions): Promise<TResponse> {
@@ -234,10 +236,15 @@ export async function requestLabsReviewerJson<TResponse>({
     Authorization: `Bearer ${bearerToken}`,
   }
 
+  if (body !== undefined) {
+    headers['Content-Type'] = 'application/json'
+  }
+
   let response: Response
 
   try {
     response = await fetch(buildUrl(config.baseUrl, endpoint), {
+      body: body === undefined ? undefined : JSON.stringify(body),
       headers,
       method,
     })

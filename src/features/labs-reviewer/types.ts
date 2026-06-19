@@ -1,9 +1,33 @@
-export type ProcessStatusState = 'FAILED' | 'IN_PROGRESS' | 'SUCCEEDED'
+export type ProcessStatusState =
+  | 'FAILED'
+  | 'IN_PROGRESS'
+  | 'SUCCEEDED'
+  | 'WRITTING'
 
-export type ReviewUploadResponse = {
+export type ReviewStartResponse = {
   message: string
   process_id: string
   output_file: string
+}
+
+export type WritingProcessStatusResponse = {
+  id: string
+  file: string
+  status: 'WRITTING'
+  created_at: string
+  user_id: string
+}
+
+export type ProcessStatusNoteRequest = {
+  note: string
+}
+
+export type ProcessStatusNoteResponse = {
+  id: string
+  process_status_id: string
+  description: string
+  created_at: string
+  updated_at: string
 }
 
 export type AgentProcessStatusSummaryResponse = {
@@ -18,7 +42,7 @@ export type AgentProcessStatusSummaryResponse = {
 
 export type ProcessStatusResponse = {
   id: string
-  file: string
+  file: string | null
   status: ProcessStatusState
   created_at: string
   user_id: string

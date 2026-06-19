@@ -1,7 +1,6 @@
-import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import SignOut from '../../components/ui/Icons/SignOut'
-import ReviewUploadPanel from '../../features/labs-reviewer/components/ReviewUploadPanel/ReviewUploadPanel'
+import ProcessSidebar from '../../features/labs-reviewer/components/ProcessSidebar/ProcessSidebar'
+import ProcessWorkspace from '../../features/labs-reviewer/components/ProcessWorkspace/ProcessWorkspace'
 import { useLabsReviewerDashboard } from '../../features/labs-reviewer/hooks/useLabsReviewerDashboard'
 import {
   clearStoredAuthenticatedUser,
@@ -9,9 +8,9 @@ import {
 } from '../../features/auth/userStorage'
 import { clearSessionToken } from '../../lib/session'
 import { AppRoute } from '../../routes/routes.enum'
+import './HomePage.css'
 
 function HomePage() {
-  const { t } = useTranslation()
   const navigate = useNavigate()
   const storedUser = getStoredAuthenticatedUser()
   const dashboard = useLabsReviewerDashboard()
@@ -23,43 +22,44 @@ function HomePage() {
   }
 
   return (
-    <main className="labs-reviewer-page" aria-labelledby="home-title">
-      <div className="labs-reviewer-page__header">
-        <div>
-          <h1 id="home-title">{t('labsReviewer.dashboard.title')}</h1>
-          <p className="route-copy">{t('labsReviewer.dashboard.copy')}</p>
-          {storedUser ? (
-            <p className="labs-reviewer-page__user">
-              {t('labsReviewer.dashboard.signedInAs', {
-                email: storedUser.email,
-              })}
-            </p>
-          ) : null}
-        </div>
-        <div className="labs-reviewer-page__actions">
-          <button
-            className="route-logout-button"
-            onClick={handleLogout}
-            type="button"
-          >
-            <SignOut className="route-logout-button__icon" />
-            {t('actions.logout')}
-          </button>
-        </div>
-      </div>
-
-      <div className="labs-reviewer-page__grid">
-        <div className="labs-reviewer-page__main">
-          <ReviewUploadPanel
-            canUpload={dashboard.canUpload}
-            fileError={dashboard.state.fileError}
-            isUploading={dashboard.isUploading}
-            onFileChange={dashboard.handleFileChange}
-            onUpload={dashboard.uploadSelectedFile}
-            selectedFileName={dashboard.state.selectedFileName}
-          />
-        </div>
-      </div>
+    <main className="home-page" aria-label="Labs Reviewer workspace">
+      <ProcessSidebar
+        isCreatingProcess={dashboard.isCreatingProcess}
+        isLoadingProcesses={dashboard.isLoadingProcesses}
+        onCreateProcess={dashboard.createProcess}
+        onLogout={handleLogout}
+        onSelectProcess={dashboard.selectProcess}
+        processes={dashboard.state.processes}
+        selectedProcessId={dashboard.state.selectedProcessId}
+        signedInEmail={storedUser?.email ?? null}
+      />
+      <ProcessWorkspace
+        activeEditNoteId={dashboard.state.activeEditNoteId}
+        canCreateNote={dashboard.canCreateNote}
+        canSaveNoteEdit={dashboard.canSaveNoteEdit}
+        canSubmitReview={dashboard.canSubmitReview}
+        composerText={dashboard.state.composerText}
+        editText={dashboard.state.editText}
+        fileError={dashboard.state.fileError}
+        isCreatingNote={dashboard.isCreatingNote}
+        isCreatingProcess={dashboard.isCreatingProcess}
+        isEditingNote={dashboard.isEditingNote}
+        isLoadingNotes={dashboard.isLoadingNotes}
+        isSubmittingReview={dashboard.isSubmittingReview}
+        isUploadingFileNote={dashboard.isUploadingFileNote}
+        notes={dashboard.state.notes}
+        onCancelNoteEdit={dashboard.cancelNoteEdit}
+        onComposerTextChange={dashboard.updateComposerText}
+        onCreateNote={dashboard.createNote}
+        onCreateProcess={dashboard.createProcess}
+        onEditTextChange={dashboard.updateEditText}
+        onSaveNoteEdit={dashboard.saveNoteEdit}
+        onStartNoteEdit={dashboard.startNoteEdit}
+        onSubmitReview={dashboard.submitReview}
+        onUploadFileNote={dashboard.uploadFileNote}
+        selectedProcess={dashboard.selectedProcess}
+        selectedProcessMissing={dashboard.state.selectedProcessMissing}
+      />
     </main>
   )
 }

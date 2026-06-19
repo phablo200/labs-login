@@ -1,0 +1,14 @@
+.home-page {
+  display: grid;
+  width: 100%;
+  min-height: 100svh;
+  grid-template-columns: auto minmax(0, 1fr);
+  background: var(--surface-panel);
+  text-align: left;
+}
+
+@media (max-width: 780px) {
+  .home-page {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

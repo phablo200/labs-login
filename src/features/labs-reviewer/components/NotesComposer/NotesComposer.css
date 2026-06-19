@@ -1,0 +1,125 @@
+.notes-composer {
+  display: grid;
+  gap: 10px;
+  padding: 14px 0 0;
+}
+
+.notes-composer__input-shell {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) 40px;
+  gap: 8px;
+  align-items: end;
+  padding: 10px;
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  background: var(--surface-input);
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--text-primary) 8%, transparent);
+}
+
+.notes-composer__file-input {
+  display: none;
+}
+
+.notes-composer__textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 46px;
+  max-height: 180px;
+  resize: vertical;
+  padding: 10px 0;
+  border: 0;
+  background: transparent;
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.notes-composer__textarea:focus {
+  outline: none;
+}
+
+.notes-composer__icon-button {
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font: inherit;
+}
+
+.notes-composer__icon-button:hover,
+.notes-composer__icon-button--send {
+  background: var(--brand-surface);
+  color: var(--brand-primary);
+}
+
+.notes-composer__icon-button:disabled {
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+.notes-composer__icon,
+.notes-composer__submit-icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+.notes-composer__send-arrow {
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.notes-composer__help,
+.notes-composer__error {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.notes-composer__help {
+  color: var(--text-muted);
+}
+
+.notes-composer__error {
+  color: var(--feedback-error);
+}
+
+.notes-composer__submit {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 18px;
+  border: 1px solid var(--brand-primary);
+  border-radius: 6px;
+  background: var(--brand-primary);
+  color: #ffffff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.notes-composer__submit:disabled {
+  border-color: var(--border-strong);
+  background: var(--border-default);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+.notes-composer__icon-button:focus-visible,
+.notes-composer__textarea:focus-visible,
+.notes-composer__submit:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 3px;
+}
